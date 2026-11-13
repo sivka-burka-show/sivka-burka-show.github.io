@@ -1,0 +1,1175 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Театрализованное музыкальное представление «Сивка-бурка» по мотивам русской народной сказки. Московский государственный ансамбль «Русская душа» п/р народной артистки России Людмилы Николаевой. Спектакль для всей семьи, 0+.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Сивка-бурка — ансамбль «Русская душа»">
+<meta property="og:description" content="Театрализованное музыкальное представление «Сивка-бурка» по мотивам русской народной сказки. Московский государственный ансамбль «Русская душа» п/р народной артистки России Людмилы Николаевой. Спектакль для всей семьи, 0+.">
+<meta property="og:image" content="img/photo-stage.jpg">
+<style>img{max-width:100%}</style>
+<title>Сивка-бурка</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ruslan+Display&family=Yeseva+One&family=PT+Serif:ital,wght@0,400;0,700;1,400&family=PT+Sans+Narrow:wght@400;700&display=swap">
+<style>
+/* Layout: ночная афиша. Широкий тёмный пролог с заклинанием, ниже светлые «листы» программки; киноварь и золото как в лубке. */
+:root {
+  --night: #16203a;
+  --night-2: #1f2c4d;
+  --paper: #10172a;
+  --sheet: #172038;
+  --ink: #ece6d6;
+  --muted: #a8a596;
+  --line: #2c3757;
+  --gold: #dcae4c;
+  --cinnabar: #c9362b;
+  --on-night: #f3ecd8;
+  --on-night-muted: #b9b4a4;
+  --ph-bg: #1d2640;
+  --ph-line: #8f7434;
+  --hero-ink: #16203a;
+  --hero-red: #b8322a;
+  --f-display: "Ruslan Display", "PT Serif", Georgia, serif;
+  --f-body: "PT Serif", Georgia, "Times New Roman", serif;
+  --f-label: "PT Sans Narrow", "Arial Narrow", Arial, sans-serif;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+img { display: block; }
+body { margin: 0; overflow-x: clip; background: var(--paper); color: var(--ink); font-family: var(--f-body); font-size: 17px; line-height: 1.6; }
+a { color: inherit; }
+:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
+.wrap { max-width: 1040px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+
+/* Пролог */
+/* Первый экран по макету: шапка-полоса, фото труппы слева, название и кнопки справа */
+.site-head { background: #10172a; color: var(--on-night); border-bottom: 1px solid #2c3757; position: relative; z-index: 3; box-shadow: 0 2px 12px rgba(0, 0, 0, .3); }
+.site-head .wrap { max-width: 1240px; display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 10px 40px; padding-block: 10px; }
+.logo { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--on-night); }
+.logo svg { flex: none; }
+.logo small { display: block; font-family: var(--f-body); font-size: 12px; line-height: 1.2; color: var(--on-night-muted); }
+.logo b { display: block; font-family: "Yeseva One", var(--f-body); font-weight: 400; font-size: 22px; letter-spacing: .04em; line-height: 1.1; color: var(--on-night); }
+.head-lead { font-family: var(--f-body); font-size: 12.5px; line-height: 1.3; color: var(--on-night-muted); border-left: 1px solid rgba(255, 255, 255, .15); padding-left: 16px; }
+.site-head nav { display: flex; justify-content: center; flex-wrap: wrap; gap: 4px 22px; font-family: var(--f-body); font-size: 15px; }
+.site-head nav a { text-decoration: none; color: var(--on-night); }
+.site-head nav a:hover { color: var(--gold); }
+.head-buy { background: linear-gradient(#e2412f, #b8241b); color: #fff; text-decoration: none; font-family: var(--f-body); font-weight: 700; font-size: 15px; padding: 10px 24px; border-radius: 999px; box-shadow: 0 3px 10px rgba(184, 36, 27, .3); }
+.head-buy:hover { filter: brightness(1.08); }
+@media (max-width: 1100px) { .head-lead { display: none; } }
+@media (max-width: 760px) { .site-head nav { order: 3; width: 100%; gap: 4px 16px; font-size: 14px; } .head-buy { margin-left: auto; padding: 8px 16px; font-size: 14px; } }
+
+.hero { background: transparent; color: var(--hero-ink); position: relative; overflow: hidden; }
+.hero::before { content: ""; position: absolute; inset: 0; background: url(img/hero-bg.jpg) center top / cover no-repeat; transform: scaleX(-1); -webkit-mask-image: linear-gradient(to bottom, #000 calc(100% - 220px), transparent); mask-image: linear-gradient(to bottom, #000 calc(100% - 220px), transparent); }
+.hero-wrap { position: relative; overflow: hidden; }
+.visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.hero-d { display: none; position: relative; width: 100%; aspect-ratio: 1586 / 914; max-width: 100%; color: #023d7d; }
+.hero-d-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.d-kicker { position: absolute; left: 56%; width: 28.4%; top: 9.2%; margin: 0; text-align: center; font-family: var(--f-body); font-weight: 700; text-transform: uppercase; color: #c4261d; font-size: 1.5vw; line-height: 1.25; }
+.d-facts { position: absolute; left: 54.6%; width: 37.2%; top: 46.4%; height: 11.4%; margin: 0; padding: 0; list-style: none; display: flex; justify-content: center; align-items: center; }
+.d-facts li { display: grid; grid-template-columns: auto auto; align-items: center; gap: 0 .5vw; padding: 0 .8vw; border-left: 1px solid rgba(29, 47, 111, .25); font-family: var(--f-body); white-space: nowrap; }
+.d-facts li:first-child { border-left: 0; padding-left: 0; }
+.d-facts svg { grid-row: span 2; width: 2.3vw; height: 2.3vw; }
+.d-facts b { font-size: 1.3vw; line-height: 1.15; }
+.d-facts span { font-size: .95vw; color: #34407a; }
+.d-buy { position: absolute; left: 51.2%; top: 58.6%; width: 20.5%; line-height: 0; transition: transform .2s ease, filter .2s ease; filter: drop-shadow(0 .5vw .9vw rgba(160, 28, 21, .3)); }
+.d-buy img { width: 100%; height: auto; }
+.d-buy:hover { transform: translateY(-3px) scale(1.02); filter: drop-shadow(0 .7vw 1.2vw rgba(160, 28, 21, .4)) brightness(1.05); }
+.d-trailer { position: absolute; left: 73.3%; top: 59%; width: 17.5%; height: 13.4%; border-radius: 999px; }
+.d-ring { position: absolute; left: 0; top: 0; width: 9.4vw; height: 9.4vw; max-height: 100%; aspect-ratio: 1; border-radius: 50%; transition: box-shadow .25s ease; }
+.d-trailer:hover .d-ring { box-shadow: 0 0 0 .4vw rgba(255, 255, 255, .8), 0 0 2vw rgba(216, 55, 44, .5); }
+.d-buy .gift-fallback { font-size: 1.5vw; }
+#sky { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 2; }
+.hero-in { position: relative; z-index: 1; max-width: 1480px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+  display: grid; justify-items: center; gap: 0; padding-bottom: 40px; }
+/* первый экран: название сверху, фото труппы по центру, кнопки под фото */
+.troupe { margin: 8px 0 0; width: min(880px, 100%); }
+.troupe img { width: 100%; height: auto; filter: drop-shadow(0 10px 18px rgba(22, 32, 58, .25)); }
+.hero-text { text-align: center; display: grid; justify-items: center; gap: 12px; padding-block: 32px 0; }
+.kicker { margin: 0; font-family: var(--f-body); font-weight: 700; text-transform: uppercase; color: var(--hero-red); font-size: clamp(17px, 1.7vw, 23px); line-height: 1.2; letter-spacing: .02em; text-shadow: 0 0 10px #fff, 0 0 3px #fff; }
+.hero h1 { font-family: "Yeseva One", var(--f-display); font-weight: 400; text-transform: uppercase; color: #023d7d; font-size: clamp(44px, 5.7vw, 86px); line-height: 1; margin: 4px 0 0; letter-spacing: .01em; white-space: nowrap;
+  text-shadow: 3px 3px 0 #fff, -2px -2px 0 #fff, 2px -2px 0 #fff, -2px 2px 0 #fff, 0 6px 18px rgba(22, 32, 58, .2); }
+.folk { width: min(360px, 80%); height: auto; }
+.hero h1.title-img { line-height: 0; margin: 6px 0 2px; text-shadow: none; }
+.title-img img { width: min(820px, 92vw); height: auto; filter: drop-shadow(0 4px 10px rgba(255, 255, 255, .7)) drop-shadow(0 6px 14px rgba(22, 32, 58, .2)); }
+.subtitle-img { margin: 0; } .subtitle-img img { display:block; width: min(760px, 94%); height:auto; margin: 0 auto; filter: drop-shadow(0 0 6px rgba(255,255,255,.9)) drop-shadow(0 0 2px #fff); }
+.tagline { margin: 0; font-family: var(--f-body); font-style: italic; font-size: clamp(19px, 2vw, 26px); color: #023d7d; text-shadow: 0 0 10px #fff, 0 0 3px #fff; }
+.facts { list-style: none; margin: 6px 0 0; padding: 0; display: flex; flex-wrap: wrap; justify-content: center; row-gap: 10px; }
+.facts li { display: grid; grid-template-columns: auto auto; align-items: center; gap: 0 8px; padding: 0 12px; white-space: nowrap; border-left: 1px solid rgba(29, 47, 111, .25); text-align: left; font-family: var(--f-body); color: #023d7d; text-shadow: 0 0 8px #fff, 0 0 3px #fff; }
+.facts li:first-child { border-left: 0; }
+.facts svg { grid-row: span 2; }
+.facts b { font-size: 19px; line-height: 1.15; }
+.facts svg { width: 32px; height: 32px; }
+.facts span { font-size: 14px; color: #34407a; }
+.cta-row { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 22px 40px; margin-top: 22px; }
+.gift { position: relative; display: inline-flex; align-items: center; justify-content: center; min-width: 270px; padding: 22px 40px; text-decoration: none; color: #fff; font-family: var(--f-body); font-weight: 700; font-size: 25px; border-radius: 16px;
+  background: linear-gradient(#e94a35, #b8221a 60%, #a01c15); border: 3px solid #e3b341; box-shadow: inset 0 2px 0 rgba(255, 255, 255, .35), inset 0 -4px 0 rgba(0, 0, 0, .15), 0 8px 18px rgba(160, 28, 21, .35); transition: transform .2s ease; }
+.gift::before { content: ""; position: absolute; inset: 6px; border-radius: 11px; border: 1px dashed rgba(240, 201, 90, .7); pointer-events: none; }
+.gift:hover { transform: translateY(-2px); }
+.gift .bow { position: absolute; left: 50%; top: -30px; transform: translateX(-50%); line-height: 0; transition: transform .25s ease; filter: drop-shadow(0 2px 2px rgba(0, 0, 0, .2)); }
+.gift:hover .bow { transform: translate(-50%, -4px) rotate(-4deg); }
+.gift-label { position: relative; text-shadow: 0 2px 2px rgba(0, 0, 0, .25); }
+.gift-img { display: inline-block; line-height: 0; transition: transform .2s ease, filter .2s ease; filter: drop-shadow(0 8px 14px rgba(160, 28, 21, .3)); }
+.gift-img img { width: 325px; max-width: 100%; height: auto; }
+.gift-img:hover { transform: translateY(-3px) scale(1.02); filter: drop-shadow(0 10px 18px rgba(160, 28, 21, .4)) brightness(1.05); }
+.gift-fallback { display: inline-block; background: linear-gradient(#e94a35, #b8221a); color: #fff; font-family: var(--f-body); font-weight: 700; font-size: 22px; padding: 18px 34px; border-radius: 16px; border: 3px solid #e3b341; line-height: 1.2; }
+.trailer { display: inline-flex; align-items: center; gap: 14px; text-decoration: none; color: #023d7d; font-family: var(--f-body); font-weight: 700; font-size: 20px; line-height: 1.2; text-align: left; text-shadow: 0 0 10px #fff, 0 0 3px #fff; }
+.medal { position: relative; width: 96px; height: 96px; border-radius: 50%; flex: none; display: grid; place-items: center;
+  background: radial-gradient(circle, #d8372c 0 30%, #fff 30% 33%, #f07d2c 33% 48%, #fff 48% 51%, #f2a0b8 51% 66%, #fbe3c2 66% 80%, #e9b04a 80% 100%);
+  box-shadow: 0 4px 14px rgba(216, 55, 44, .35); transition: transform .25s ease; }
+.medal-dots { position: absolute; inset: 8px; border-radius: 50%; border: 3px dotted #fff; opacity: .9; }
+.play { width: 0; height: 0; margin-left: 6px; border-left: 20px solid #fff; border-top: 13px solid transparent; border-bottom: 13px solid transparent; position: relative; }
+.trailer:hover .medal { transform: scale(1.07); }
+.trailer:hover { color: var(--hero-red); }
+@media (max-width: 900px) {
+  .hero-text { padding-block: 24px 0; }
+  .facts li { padding: 6px 12px; }
+}
+@media (max-width: 480px) {
+  .hero h1 { white-space: normal; }
+  .facts li { border-left: 0; }
+  .gift-img img { width: 290px; }
+}
+.btn { display: inline-flex; align-items: center; gap: 8px; font-family: var(--f-label); font-weight: 700; text-transform: uppercase; letter-spacing: .1em; font-size: 15px; text-decoration: none; padding: 13px 22px; border-radius: 2px; border: 2px solid transparent; }
+.btn-gold { background: var(--gold); color: #16203a; }
+.btn-gold:hover { background: #ddb04f; }
+.btn-ghost { border-color: var(--hero-ink); color: var(--hero-ink); background: rgba(255, 255, 255, .6); }
+.btn-ghost:hover { border-color: var(--hero-red); color: var(--hero-red); }
+.btn-red { background: var(--cinnabar); color: #fff; }
+.btn-red:hover { filter: brightness(1.08); }
+
+/* Орнамент-кайма */
+.border-band { height: 14px; background:
+  linear-gradient(135deg, var(--cinnabar) 25%, transparent 25%) -7px 0/14px 14px,
+  linear-gradient(225deg, var(--cinnabar) 25%, transparent 25%) -7px 0/14px 14px,
+  linear-gradient(315deg, var(--gold) 25%, transparent 25%) 0 0/14px 14px,
+  linear-gradient(45deg, var(--gold) 25%, transparent 25%) 0 0/14px 14px,
+  var(--night); }
+
+/* Разделы */
+section { padding-block: 36px 8px; }
+/* Все разделы под первым экраном на акварельном фоне Ольги: фон на всю ширину окна, повторяется с зеркальной копией без стыков, текст тёмный */
+main.wrap { position: relative; isolation: isolate; padding-bottom: 72px;
+  --ink: #1b2236; --muted: #444b60; --line: rgba(27, 34, 54, .18); --paper: #f6f4ee; --sheet: rgba(255, 255, 255, .72); --gold: #a8761a; --cinnabar: #b8322a; --ph-bg: #fbf3e2; --ph-line: #c8962e; color: var(--ink); color-scheme: light; }
+/* акварель лежит на всей странице и продолжается под нижней полосой; шапка и первый экран закрывают её своими фонами */
+body { background-image: linear-gradient(rgba(255, 250, 240, .35), rgba(255, 250, 240, .35)), url(img/afisha-bg-m.jpg); background-size: auto, 100% auto; background-position: 0 0, center top; background-repeat: repeat, repeat-y; background-attachment: scroll; }
+@media (min-width: 760px) { body { background-image: linear-gradient(rgba(255, 250, 240, .35), rgba(255, 250, 240, .35)), url(img/site-bg-wide.jpg); } }
+.sec-head { position: relative; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 4px; margin-bottom: 16px; padding-inline: 64px; }
+h2 { font-family: var(--f-display); font-weight: 400; font-size: clamp(34px, 5vw, 46px); line-height: 1; margin: 0; text-wrap: balance; }
+.sec-note { font-family: var(--f-label); color: var(--muted); font-size: 16px; }
+
+/* Заполнители: видно, что сюда нужны реальные данные */
+.ph { background: var(--ph-bg); outline: 1px dashed var(--ph-line); outline-offset: 1px; padding: 0 4px; border-radius: 2px; }
+.hero .ph, footer .ph { background: rgba(200, 150, 46, .14); color: inherit; }
+.date .d.ph { display: inline-block; }
+.legend { font-family: var(--f-label); font-size: 14px; color: var(--muted); display: flex; gap: 8px; align-items: center; margin-top: 4px; }
+
+/* Афиша */
+.shows { display: grid; gap: 0; border-top: 2px solid var(--ink); }
+.show { display: grid; grid-template-columns: 112px minmax(0, 1fr) auto; gap: 8px 24px; align-items: center; padding-block: 18px; border-bottom: 1px solid var(--line); }
+.date { font-variant-numeric: tabular-nums; line-height: 1.1; }
+.date .d { font-family: var(--f-display); font-size: 40px; display: block; }
+.date .m { font-family: var(--f-label); text-transform: uppercase; letter-spacing: .1em; font-size: 14px; color: var(--muted); }
+.show-info { min-width: 0; }
+.show-info strong { display: block; font-size: 18px; }
+.show-info span { color: var(--muted); font-size: 15px; font-family: var(--f-label); }
+.status { font-family: var(--f-label); font-size: 13px; text-transform: uppercase; letter-spacing: .1em; color: var(--cinnabar); }
+@media (max-width: 620px) {
+  .show { grid-template-columns: 76px minmax(0, 1fr); }
+  .show .btn { grid-column: 1 / -1; justify-content: center; }
+  .date .d { font-size: 32px; }
+}
+
+/* Выбор города и даты */
+.filters { display: grid; gap: 12px; margin-bottom: 20px; }
+.filter { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 14px; }
+.f-label { font-family: var(--f-label); text-transform: uppercase; letter-spacing: .1em; font-size: 14px; color: var(--muted); min-width: 52px; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { font-family: var(--f-label); font-size: 16px; padding: 7px 16px; border-radius: 2px; border: 2px solid var(--ink); background: transparent; color: var(--ink); cursor: pointer; }
+.chip:hover { border-color: var(--cinnabar); color: var(--cinnabar); }
+.chip[aria-pressed="true"] { background: var(--ink); color: var(--paper); }
+.chip:disabled { border-color: var(--line); color: var(--muted); opacity: .55; cursor: default; }
+.chip:disabled:hover { border-color: var(--line); color: var(--muted); }
+@media (max-width: 640px) {
+  .filter { flex-wrap: nowrap; flex-direction: column; align-items: stretch; min-width: 0; }
+  .filters, #afisha { min-width: 0; }
+  .chips-months { flex-wrap: nowrap; overflow-x: auto; padding-bottom: 4px; scrollbar-width: none; }
+  .chips-months .chip { flex: none; }
+}
+.chips-months .chip { padding-inline: 12px; }
+.no-shows { border-top: 2px solid var(--ink); padding-block: 22px; display: grid; gap: 10px; justify-items: start; }
+.no-shows strong { font-family: var(--f-display); font-weight: 400; font-size: 26px; }
+.no-shows p { margin: 0; }
+
+/* О спектакле */
+.about { max-width: 760px; margin: 0 auto; text-align: center; }
+.about p { margin: 0 0 14px; }
+.about .about-lead { font-family: "Yeseva One", var(--f-body); font-size: clamp(24px, 3vw, 32px); line-height: 1.2; color: var(--cinnabar); margin-bottom: 18px; }
+.feats { list-style: none; padding: 0; margin: 52px auto 8px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 48px 24px; }
+.feats li { display: grid; justify-items: center; gap: 4px; }
+/* значки внутри белых надувных шаров, шары парят */
+.feats .orb { position: relative; width: 92px; height: 92px; border-radius: 50%; display: grid; place-items: center; margin-bottom: 8px;
+  background: radial-gradient(circle at 35% 30%, #fff 0, #f5f2ec 55%, #d8d2c6 100%); box-shadow: 0 10px 16px rgba(22, 32, 58, .18); }
+.feats .orb::before, .feats .orb::after { content: ""; position: absolute; top: 0; bottom: 0; left: 50%; border: 1.2px solid rgba(160, 150, 135, .45); border-radius: 50%; translate: -50% 0; }
+.feats .orb::before { width: 32%; }
+.feats .orb::after { width: 66%; }
+/* шары светятся и роняют золотую пыльцу */
+.feats .spark { position: absolute; z-index: 2; left: var(--x); top: var(--y); width: var(--s, 16px); height: var(--s, 16px); margin: calc(var(--s, 16px) / -2) 0 0 calc(var(--s, 16px) / -2); background: radial-gradient(circle, #fffbe6 0 12%, #f2c43c 35%, #d2930f 100%); clip-path: polygon(50% 0, 60% 40%, 100% 50%, 60% 60%, 50% 100%, 40% 60%, 0 50%, 40% 40%); filter: drop-shadow(0 0 4px rgba(230, 170, 30, .9)); opacity: 0; pointer-events: none; }
+@media (prefers-reduced-motion: no-preference) {
+  .feats .orb { animation: float 3s ease-in-out infinite, orb-glow 2.6s ease-in-out infinite; }
+  @keyframes orb-glow { 0%, 100% { box-shadow: 0 10px 16px rgba(22, 32, 58, .18), 0 0 0 rgba(246, 205, 90, 0); } 50% { box-shadow: 0 10px 16px rgba(22, 32, 58, .18), 0 0 36px 12px rgba(246, 205, 90, .85); } }
+  .feats .spark { animation: spark var(--dur, 1.8s) ease-in-out var(--del, 0s) infinite; }
+  @keyframes spark { 0%, 100% { opacity: 0; scale: .1; rotate: 0deg; } 18% { opacity: 1; scale: 1.15; } 32% { opacity: .9; scale: .8; rotate: 45deg; } 50% { opacity: 0; scale: .1; rotate: 90deg; } }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .feats li:nth-child(2) .orb { animation-duration: 3.6s, 2.6s; animation-delay: -1.1s, -1.1s; }
+  .feats li:nth-child(3) .orb { animation-duration: 2.7s, 2.6s; animation-delay: -.5s, -.5s; }
+  .feats li:nth-child(4) .orb { animation-duration: 3.3s, 2.6s; animation-delay: -2s, -2s; }
+  .feats li:nth-child(5) .orb { animation-duration: 2.9s, 2.6s; animation-delay: -1.6s, -1.6s; }
+  .feats li:nth-child(6) .orb { animation-duration: 3.8s, 2.6s; animation-delay: -.8s, -.8s; }
+}
+.feats b { font-family: var(--f-label); text-transform: uppercase; letter-spacing: .08em; font-size: 16px; }
+.feats span { font-size: 15px; line-height: 1.4; color: var(--muted); }
+@media (max-width: 600px) { .feats { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 44px 14px; } }
+.egg-call { margin-top: 28px; display: grid; justify-items: center; gap: 18px; }
+.egg-call p { margin: 0; }
+.egg-find-gold { display: grid; justify-items: center; gap: 10px; padding: 0; border: 0; background: none; cursor: pointer; color: var(--ink); transition: transform .2s ease; }
+.egg-find-gold .egg-gold { width: 84px; height: 105px; }
+.egg-find-gold span { font-family: var(--f-display); font-size: 26px; line-height: 1.1; color: #023d7d; }
+.egg-find-gold:hover { transform: translateY(-3px) scale(1.04); }
+@media (prefers-reduced-motion: no-preference) { .egg-find-gold .egg-gold { animation: egg-bob 3s ease-in-out infinite; } @keyframes egg-bob { 0%,100% { transform: translateY(0) rotate(-4deg); } 50% { transform: translateY(-8px) rotate(4deg); } } }
+
+.egg-call .egg-call-hint { font-style: italic; color: var(--ink); }
+.gift-btn { position: relative; display: inline-block; width: 340px; max-width: 100%; padding: 0; border: 0; background: none; cursor: pointer; line-height: 0; transition: transform .2s ease, filter .2s ease; filter: drop-shadow(0 8px 14px rgba(160, 28, 21, .3)); }
+.gift-btn img { width: 100%; height: auto; }
+.gift-btn span { position: absolute; left: 10%; right: 4%; top: 55%; bottom: 17%; display: grid; place-items: center; font-family: var(--f-body); font-weight: 400; font-size: 25px; line-height: 1.1; color: #fff; text-shadow: 0 2px 3px rgba(80, 0, 0, .45); white-space: nowrap; }
+.gift-btn:hover { transform: translateY(-3px) scale(1.02); filter: drop-shadow(0 10px 18px rgba(160, 28, 21, .4)) brightness(1.05); }
+@media (max-width: 400px) { .gift-btn { width: 300px; } .gift-btn span { font-size: 22px; } }
+.egg-ball.call { filter: drop-shadow(0 0 10px #f3c94f) drop-shadow(0 0 22px rgba(243, 201, 79, .8)); }
+.passport { background: var(--sheet); border: 1px solid var(--line); padding: 22px 24px; display: grid; gap: 12px; margin: 0; }
+.passport div { display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: 12px; }
+.passport dt { font-family: var(--f-label); text-transform: uppercase; letter-spacing: .08em; font-size: 14px; color: var(--muted); padding-top: 2px; }
+.passport dd { margin: 0; }
+@media (max-width: 760px) { .about { grid-template-columns: 1fr; } }
+
+/* Артисты: как в театральной программке — роль, отточие, исполнитель */
+.prog-head { font-family: var(--f-label); font-weight: 700; text-transform: uppercase; letter-spacing: .14em; font-size: 15px; color: var(--muted); margin: 8px 0 14px; text-align: center; }
+.prog-head + .prog { margin-bottom: 44px; }
+.prog { list-style: none; margin: 0 auto; padding: 0; max-width: 780px; display: grid; gap: 2px; }
+.pr { display: grid; grid-template-columns: 112px auto minmax(24px, 1fr) auto; grid-template-rows: 1fr auto auto 1fr; grid-template-areas: "ph . . ." "ph role dots name" "ph note note note" "ph . . ."; column-gap: 12px; align-items: end; padding-block: 12px; }
+.pr-ph { grid-area: ph; align-self: center; width: 112px; height: 112px; border-radius: 50%; object-fit: cover; box-shadow: 0 0 0 3px #fff, 0 6px 14px rgba(22, 32, 58, .2); }
+.pr-ini { display: grid; place-items: center; background: var(--night); color: var(--gold); font-family: var(--f-display); font-size: 34px; }
+.pr-role { grid-area: role; white-space: nowrap; font-style: italic; font-size: 17px; color: var(--muted); }
+.pr-dots { grid-area: dots; border-bottom: 2px dotted var(--line); margin-bottom: 7px; }
+.pr-name { grid-area: name; white-space: nowrap; font-family: var(--f-display); font-size: 21px; line-height: 1.15; text-align: right; }
+.pr-note { grid-area: note; font-size: 14px; color: var(--muted); text-align: right; }
+@media (max-width: 760px) {
+  .pr { grid-template-columns: 84px minmax(0, 1fr); grid-template-rows: 1fr auto auto auto 1fr; grid-template-areas: "ph ." "ph role" "ph name" "ph note" "ph ."; align-items: start; padding-block: 10px; border-bottom: 1px dotted var(--line); }
+  .pr-ph { width: 84px; height: 84px; }
+  .pr-dots { display: none; }
+  .pr-role, .pr-name { white-space: normal; }
+  .pr-name, .pr-note { text-align: left; }
+  .pr-role { font-size: 15px; }
+  .pr-name { font-size: 19px; }
+}
+/* Видео */
+.videos { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
+.video { text-decoration: none; display: grid; gap: 10px; }
+.thumb { aspect-ratio: 16/9; max-width: 100%; background: linear-gradient(160deg, rgba(31, 44, 77, .55), rgba(22, 32, 58, .75)), var(--img, none) center / cover, var(--night); display: grid; place-items: center; position: relative; border-radius: 2px; }
+.thumb::after { content: ""; width: 0; height: 0; border-left: 22px solid var(--gold); border-top: 14px solid transparent; border-bottom: 14px solid transparent; margin-left: 6px; }
+.thumb .tag { position: absolute; left: 10px; bottom: 8px; font-family: var(--f-label); font-size: 13px; color: var(--on-night-muted); letter-spacing: .08em; text-transform: uppercase; }
+.video:hover .thumb { outline: 2px solid var(--gold); }
+.video strong { font-size: 17px; }
+.thumb.playing { background: #000; outline: none; } .thumb.playing::after { display: none; }
+.thumb.playing iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.reviews { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+.review .thumb { aspect-ratio: 9 / 12; }
+.review strong { font-size: 16px; width: fit-content; }
+@media (max-width: 860px) { .reviews { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.write-review { margin-top: 28px; padding-block: 22px; border-top: 2px solid var(--ink); border-bottom: 1px solid var(--line); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 14px 28px; }
+.write-review strong { font-family: var(--f-display); font-weight: 400; font-size: 26px; }
+.write-review p { margin: 4px 0 0; color: var(--muted); }
+
+
+/* Фото: вертикальные кадры в одну колонку, горизонтальные в две */
+.photos { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); grid-auto-rows: 165px; grid-auto-flow: dense; gap: 10px; }
+.photo { margin: 0; overflow: hidden; border-radius: 2px; grid-row: span 2; }
+.photo img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s ease; }
+.photo:hover img { transform: scale(1.04); }
+.photo.land { grid-column: span 2; }
+@media (max-width: 760px) {
+  .photos { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-auto-rows: 120px; }
+}
+
+/* Контакты */
+.contacts { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px; }
+.contacts h3 { font-family: var(--f-label); text-transform: uppercase; letter-spacing: .1em; font-size: 14px; color: var(--muted); margin: 0 0 6px; font-weight: 700; }
+.contacts p { margin: 0; }
+.contacts a { text-decoration: none; }
+.contacts a:hover { color: var(--cinnabar); }
+.socials { display: flex; flex-wrap: wrap; gap: 8px; }
+.contacts .socials a { --soc-bg: #023d7d; width: 38px; height: 38px; border-radius: 50%; display: grid; place-items: center; background: var(--soc-bg); color: #fff; box-shadow: 0 0 0 2px #dcae4c; transition: transform .2s ease, background .2s ease; }
+.contacts .socials a:hover { --soc-bg: #034b98; color: #fff; transform: translateY(-2px); }
+.socials svg { width: 22px; height: 22px; }
+
+
+footer { margin-top: 0; background: var(--night); color: var(--on-night-muted); font-family: var(--f-label); font-size: 15px; }
+footer .wrap { padding-block: 28px; display: flex; flex-wrap: wrap; gap: 8px 24px; justify-content: space-between; }
+footer .end { font-family: var(--f-display); color: var(--on-night); font-size: 20px; }
+
+.spell .w { display: inline-block; }
+@media (prefers-reduced-motion: no-preference) {
+  .spell .w { animation: word .7s ease-out both; animation-delay: calc(var(--i) * 110ms + 300ms); }
+  @keyframes word { from { opacity: .15; transform: translateY(6px); filter: blur(2px); } to { opacity: 1; transform: none; filter: none; } }
+  h1 { animation: glow 4s ease-in-out 1.6s infinite alternate; }
+  @keyframes glow { from { text-shadow: 0 0 0 transparent; } to { text-shadow: 0 0 28px rgba(200, 150, 46, .45); } }
+  .medal-dots { animation: spin 14s linear infinite; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .gift-img, .gift-btn { animation: jiggle 4.5s ease-in-out 2.5s infinite; }
+  .gift-img:hover, .gift-btn:hover { animation: none; }
+  @keyframes jiggle { 0%, 84%, 100% { transform: none; } 87% { transform: rotate(-4deg); } 90% { transform: rotate(4deg); } 93% { transform: rotate(-3deg); } 96% { transform: rotate(2deg); } }
+}
+.wand { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 50; }
+/* Игра «Найди золотое яйцо»: белые шары в заголовках разделов */
+.sec-head .egg-ball { position: absolute; right: 0; top: 50%; margin-top: -26px; }
+@media (max-width: 600px) { .sec-head { padding-inline: 44px; } .sec-head .egg-ball { width: 40px; height: 40px; margin-top: -20px; right: -4px; } }
+.egg-ball { width: 52px; height: 52px; padding: 0; border: 0; background: none; cursor: pointer; flex: none; filter: drop-shadow(0 6px 8px rgba(22, 32, 58, .22)); transition: transform .2s ease; }
+.egg-ball svg { width: 100%; height: 100%; display: block; }
+.egg-ball:hover { transform: scale(1.08); }
+.egg-ball.pop { animation: pop .35s ease-out forwards; pointer-events: none; }
+@keyframes pop { to { transform: scale(1.6); opacity: 0; } }
+@media (prefers-reduced-motion: no-preference) {
+  /* шары парят: качаются, кружат и время от времени подпрыгивают, у каждого свой темп (задаётся в скрипте) */
+  .egg-ball:not(.pop) { animation: float var(--fd, 2.6s) ease-in-out var(--fdel, 0s) infinite, nudge 5s ease-in-out var(--ndel, 0s) infinite; }
+  @keyframes float { 0%, 100% { translate: 0 0; rotate: 0deg; } 25% { translate: 9px -14px; rotate: 9deg; } 50% { translate: 0 -22px; rotate: 0deg; } 75% { translate: -9px -12px; rotate: -9deg; } }
+  @keyframes nudge { 0%, 84%, 100% { scale: 1; } 88% { scale: 1.18 .86; } 92% { scale: .9 1.14; } 96% { scale: 1.06 .96; } }
+}
+.egg-modal { position: fixed; inset: 0; z-index: 60; display: grid; place-items: center; padding: 16px; background: rgba(16, 23, 42, .55); }
+.egg-card { position: relative; max-width: 380px; width: 100%; background: var(--sheet); color: var(--ink); border-radius: 18px; padding: 28px 24px 26px; text-align: center; box-shadow: 0 20px 50px rgba(0, 0, 0, .35); }
+.egg-card h3 { font-family: var(--f-display); font-weight: 400; font-size: 28px; line-height: 1.1; margin: 8px 0 10px; }
+.egg-card p { margin: 0 0 12px; }
+.egg-prize { display: flex; justify-content: center; align-items: center; gap: 10px; flex-wrap: wrap; }
+.egg-code { font-family: var(--f-label); font-size: 24px; letter-spacing: .12em; border: 2px dashed var(--gold); padding: 4px 14px; border-radius: 8px; }
+.egg-copy { font-family: var(--f-label); font-size: 15px; text-transform: uppercase; letter-spacing: .08em; border: 2px solid var(--ink); background: transparent; color: var(--ink); border-radius: 2px; padding: 6px 12px; cursor: pointer; }
+.egg-note { font-size: 14px; color: var(--muted); }
+.egg-gold { width: 96px; height: 120px; overflow: visible; filter: drop-shadow(0 0 14px rgba(255, 196, 64, .55)) drop-shadow(0 8px 12px rgba(0, 0, 0, .35)); }
+.egg-shine { animation: egg-shine 2.4s ease-in-out infinite; }
+@keyframes egg-shine { 0% { translate: 0 0; } 60%, 100% { translate: 110px 0; } }
+.egg-sparks path { transform-box: fill-box; transform-origin: center; animation: egg-spark 1.8s ease-in-out infinite; }
+.egg-sparks path:nth-child(2) { animation-delay: -.6s; }
+.egg-sparks path:nth-child(3) { animation-delay: -1.2s; }
+@keyframes egg-spark { 0%, 100% { scale: .2; opacity: 0; } 50% { scale: 1.2; opacity: 1; } }
+@media (prefers-reduced-motion: reduce) { .egg-shine, .egg-sparks path { animation: none; } }
+@media (prefers-reduced-motion: no-preference) { .egg-modal:not([hidden]) .egg-gold { animation: egg-in .7s cubic-bezier(.2, 1.4, .4, 1) both; } @keyframes egg-in { from { transform: scale(.2) rotate(-20deg); opacity: 0; } } }
+.egg-close { position: absolute; right: 10px; top: 6px; border: 0; background: none; font-size: 30px; line-height: 1; color: var(--muted); cursor: pointer; padding: 4px 8px; }
+
+/* золотые линии вместо чёрных */
+.shows, .no-shows, .write-review { border-top: 0; position: relative; }
+.shows::before, .no-shows::before, .write-review::before { content:""; position:absolute; left:0; right:0; top:0; height:2px; background: linear-gradient(90deg, transparent, #c9a14a 15%, #e3c46e 50%, #c9a14a 85%, transparent); }
+.show { border-bottom: 1px solid rgba(201,161,74,.45); }
+.write-review { border-bottom-color: rgba(201,161,74,.45); }
+.chip, .egg-copy { border-color: #c9a14a; }
+.chip[aria-pressed="true"] { background: #023d7d; border-color: #023d7d; color: #fff; }
+
+/* музыка */
+.music-btn { position: relative; flex: none; width: 44px; height: 44px; border-radius: 50%; border: 0; padding: 0; cursor: pointer; display: grid; place-items: center; color: #5a3a06; background: radial-gradient(circle at 35% 30%, #fff1b8, #f0c650 30%, #c88d1c 70%, #8a5a0e); box-shadow: 0 0 0 2px #dcae4c, 0 2px 8px rgba(0, 0, 0, .4); transition: transform .2s ease; }
+.music-btn:hover { transform: scale(1.07); }
+@media (max-width: 760px) { .music-btn { position: absolute; right: 12px; top: 12px; width: 38px; height: 38px; } .music-btn svg { width: 19px; height: 19px; } .site-head .wrap { position: relative; padding-right: 56px; padding-left: 12px; } }
+.music-btn svg { width: 22px; height: 22px; }
+.music-btn > * { grid-area: 1 / 1; }
+.music-btn .m-off { position: static; width: 32px; height: 2.5px; background: #b8322a; border-radius: 2px; rotate: 45deg; box-shadow: 0 0 0 1.5px #fff3cc; }
+.music-btn[aria-pressed="true"] .m-off { display: none; }
+@media (prefers-reduced-motion: no-preference) { .music-btn[aria-pressed="true"] { animation: music-glow 1.6s ease-in-out infinite; } @keyframes music-glow { 0%,100% { box-shadow: 0 0 0 2px #dcae4c, 0 0 8px 2px rgba(255, 200, 80, .45); } 50% { box-shadow: 0 0 0 2px #dcae4c, 0 0 18px 6px rgba(255, 200, 80, .75); } } }
+
+.music-btn::before, .music-btn::after { content: "♪"; position: absolute; top: 2px; right: -6px; font-size: 16px; line-height: 1; color: #f0c650; text-shadow: 0 0 6px rgba(255, 200, 80, .8); opacity: 0; pointer-events: none; }
+.music-btn::after { content: "♫"; right: auto; left: -8px; top: 8px; font-size: 14px; }
+@media (prefers-reduced-motion: no-preference) {
+  .music-btn[aria-pressed="true"] svg { animation: note-dance .9s ease-in-out infinite; transform-origin: 50% 80%; }
+  .music-btn[aria-pressed="true"]::before { animation: note-fly 2s ease-out infinite; }
+  .music-btn[aria-pressed="true"]::after { animation: note-fly2 2s ease-out 1s infinite; }
+  @keyframes note-dance { 0%,100% { transform: rotate(-10deg) scale(1); } 50% { transform: rotate(10deg) scale(1.12); } }
+  @keyframes note-fly { 0% { opacity: 0; transform: translate(0, 6px) scale(.6); } 20% { opacity: 1; } 100% { opacity: 0; transform: translate(10px, -18px) scale(1.1) rotate(15deg); } }
+  @keyframes note-fly2 { 0% { opacity: 0; transform: translate(0, 6px) scale(.6); } 20% { opacity: 1; } 100% { opacity: 0; transform: translate(-10px, -18px) scale(1.1) rotate(-15deg); } }
+}
+
+/* синий цвет названия вместо красного (кроме кнопки на первой странице) */
+main.wrap, .egg-modal { --cinnabar: #023d7d; }
+.btn-red { background: #023d7d; color: #fff; }
+.btn-red:hover { background: #034b98; }
+
+/* единый синий — как в надписи «Сивка-бурка» */
+:root { --brand-blue: #023d7d; }
+main.wrap h2, .date .d, .no-shows strong, .pr-name, .write-review strong, .egg-modal h3 { color: var(--brand-blue); }
+.pr-ini { background: var(--brand-blue); }
+.chip { border-color: #c9a14a; }
+
+/* Создатели и исполнители: две колонки, компактные строки */
+#cast .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 0 56px; max-width: 1100px; margin: 0 auto; align-items: start; }
+#cast .cols .prog { max-width: none; margin-bottom: 0; gap: 0; }
+#cast .pr { grid-template-columns: 64px minmax(0, 1fr); grid-template-rows: 1fr auto auto auto 1fr; grid-template-areas: "ph ." "ph role" "ph name" "ph note" "ph ."; column-gap: 16px; align-items: start; padding-block: 12px; border-bottom: 1px dotted rgba(201, 161, 74, .55); }
+#cast .pr:last-child { border-bottom: 0; }
+#cast .pr-ph { width: 64px; height: 64px; box-shadow: 0 0 0 2px #fff, 0 4px 10px rgba(22, 32, 58, .18); }
+#cast .pr-dots { display: none; }
+#cast .pr-role { white-space: normal; font-size: 15px; line-height: 1.3; }
+#cast .pr-name { white-space: normal; text-align: left; font-size: 19px; margin-top: 2px; }
+#cast .pr-note { text-align: left; font-size: 13px; margin-top: 2px; }
+@media (max-width: 900px) { #cast .cols { grid-template-columns: 1fr; gap: 28px; max-width: 560px; } }
+
+/* Анимации: появление, фото, блеск названия, афиша */
+.reveal { opacity: 0; transform: translateY(18px); transition: opacity .7s ease, transform .7s ease; transition-delay: var(--rd, 0s); }
+.reveal.in { opacity: 1; transform: none; }
+#cast .pr-ph { transition: transform .3s ease, box-shadow .3s ease; }
+#cast .pr:hover .pr-ph { transform: scale(1.1); box-shadow: 0 0 0 2px #fff, 0 0 0 4px #dcae4c, 0 0 16px 4px rgba(240, 198, 80, .55); }
+.hero h1.title-img { position: relative; }
+.title-img img { display: block; }
+.title-snow { position: absolute; left: 0; right: 0; top: -60px; bottom: 0; pointer-events: none; }
+@media (prefers-reduced-motion: no-preference) {
+  .title-img img { -webkit-mask-image: linear-gradient(90deg, #000 45%, transparent 55%); mask-image: linear-gradient(90deg, #000 45%, transparent 55%); -webkit-mask-size: 240% 100%; mask-size: 240% 100%; -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat; animation: title-write 2.2s ease-out .3s both; }
+  @keyframes title-write { from { -webkit-mask-position: 100% 0; mask-position: 100% 0; } to { -webkit-mask-position: 0 0; mask-position: 0 0; } }
+}
+.show { transition: background .3s ease; border-radius: 6px; }
+.show:hover { background: rgba(255, 255, 255, .5); }
+@media (prefers-reduced-motion: no-preference) {
+  .show .btn-red { animation: btn-breathe 2.8s ease-in-out infinite; }
+  .show:nth-child(2n) .btn-red { animation-delay: -1.4s; }
+  @keyframes btn-breathe { 0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(2, 61, 125, 0); } 50% { transform: scale(1.05); box-shadow: 0 4px 14px rgba(2, 61, 125, .35); } }
+}
+@media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
+/* Отзывы зрителей текстом */
+.quotes { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; align-items: start; }
+.quote { position: relative; margin: 0; padding: 30px 24px 22px; background: rgba(255, 255, 255, .78); border-radius: 14px; box-shadow: 0 8px 22px rgba(22, 32, 58, .1); border-top: 3px solid #c9a14a; }
+.quote::before { content: "\201C"; position: absolute; left: 18px; top: -6px; font-family: "Yeseva One", var(--f-body); font-size: 64px; line-height: 1; color: #c9a14a; }
+.quote blockquote { margin: 0; font-size: 16px; line-height: 1.55; }
+.quote blockquote p { margin: 0 0 10px; }
+.quote figcaption { margin-top: 6px; font-family: var(--f-display); font-size: 22px; color: var(--brand-blue); }
+.quote figcaption::before { content: "— "; color: #c9a14a; }
+@media (max-width: 900px) { .quotes { grid-template-columns: 1fr; max-width: 640px; margin: 0 auto; } }
+</style>
+</head>
+<body>
+<header class="site-head">
+  <div class="wrap">
+    <a class="logo" href="#top">
+      <svg width="58" height="44" viewBox="0 0 58 44" aria-hidden="true" fill="none" stroke="#dcae4c" stroke-width="1.6"><path d="M4 16 L29 4 L54 16 Z"/><path d="M29 4 V1"/><circle cx="29" cy="11" r="2.2"/><path d="M6 16 H52 M6 19 H52"/><path d="M10 19 V37 M17 19 V37 M24 19 V37 M34 19 V37 M41 19 V37 M48 19 V37"/><path d="M27 37 V27 Q29 24 31 27 V37"/><path d="M3 37 H55 M1 41 H57"/></svg>
+      <span><small>Московский государственный ансамбль</small><b>РУССКАЯ ДУША</b></span>
+    </a>
+    <span class="head-lead">Художественный руководитель<br>народная артистка России<br>Людмила Николаева</span>
+    <nav aria-label="Разделы">
+      <a href="#about">О спектакле</a><a href="#afisha">Афиша</a><a href="#cast">Создатели</a><a href="#video">Видео</a><a href="#photo">Фото</a><a href="#reviews">Отзывы</a><a href="#contacts">Контакты</a>
+    </nav>
+    <button class="music-btn" type="button" aria-pressed="false" aria-label="Включить музыку"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M9 3v10.6A3.5 3.5 0 1 0 11 17V8h7V3H9z"/></svg><span class="m-off" aria-hidden="true"></span></button>
+  </div>
+</header>
+
+<div class="hero-wrap" id="top">
+  <canvas id="sky" aria-hidden="true"></canvas>
+<div class="hero">
+  <div class="hero-in">
+    <div class="hero-text">
+      <h1 class="title-img"><img src="img/title.webp" width="1600" height="351" alt="Сивка-бурка"></h1>
+      <p class="subtitle-img"><img src="img/subtitle.webp" width="2426" height="172" alt="Театрализованное музыкальное представление по мотивам русской народной сказки"></p>
+    </div>
+    <figure class="troupe"><img src="img/troupe-new.webp" width="1925" height="1553" alt="Артисты спектакля «Сивка-бурка» в ярких расписных костюмах, с ростовыми куклами коня и козы"></figure>
+    <div class="cta-row">
+      <a class="gift-img" href="https://iframeab-pre12305.intickets.ru/event/73604188" target="_blank" rel="noopener" data-hero-buy><img src="img/buy-gift.png" width="325" height="138" alt="Купить билеты"></a>
+      <a class="trailer" href="#video"><span class="medal" aria-hidden="true"><span class="medal-dots"></span><span class="play"></span></span><span>Смотреть<br>тизер</span></a>
+    </div>
+  </div>
+</div>
+</div>
+
+<main class="wrap">
+  <section id="afisha">
+    <div class="sec-head">
+      <h2>Афиша</h2>
+    <button class="egg-ball" type="button" aria-label="Белый шар: нажмите, вдруг в нём золотое яйцо"><svg viewBox="0 0 64 64" aria-hidden="true"><defs><radialGradient id="bgr0" cx="35%" cy="32%" r="70%"><stop offset="0" stop-color="#fff"/><stop offset=".65" stop-color="#f3f0ea"/><stop offset="1" stop-color="#d3cdc1"/></radialGradient></defs><circle cx="32" cy="32" r="29" fill="url(#bgr0)"/><g fill="none" stroke="#b9b1a3" stroke-width="1.2" opacity=".7"><ellipse cx="32" cy="32" rx="10" ry="29"/><ellipse cx="32" cy="32" rx="21" ry="29"/></g><path d="M29 61 q3 3 6 0" stroke="#b9b1a3" stroke-width="1.5" fill="none"/></svg></button></div>
+    <div class="filters" aria-label="Выбор показа">
+      <div class="filter"><span class="f-label">Год</span><div class="chips" data-chips="year"></div></div>
+      <div class="filter"><span class="f-label">Месяц</span><div class="chips chips-months" data-chips="month"></div></div>
+    </div>
+    <div class="shows">
+      <div class="show" data-city="Москва" data-venue="«ЮгАрт»" data-start="2026-12-29T12:00:00+03:00">
+        <div class="date"><span class="d">29</span><span class="m">декабря, вт</span></div>
+        <div class="show-info"><strong>12:00 · Концертный зал «ЮгАрт»</strong><span>Москва, Варшавское шоссе, д. 116</span></div>
+        <a class="btn btn-red" href="https://iframeab-pre12305.intickets.ru/seance/73604422/" target="_blank" rel="noopener">Билеты</a>
+      </div>
+      <div class="show" data-city="Москва" data-venue="«ЮгАрт»" data-start="2026-12-29T15:00:00+03:00">
+        <div class="date"><span class="d">29</span><span class="m">декабря, вт</span></div>
+        <div class="show-info"><strong>15:00 · Концертный зал «ЮгАрт»</strong><span>Москва, Варшавское шоссе, д. 116</span></div>
+        <a class="btn btn-red" href="https://iframeab-pre12305.intickets.ru/seance/73604424/" target="_blank" rel="noopener">Билеты</a>
+      </div>
+      <div class="show" data-city="Москва" data-venue="«ЮгАрт»" data-start="2026-12-29T18:00:00+03:00">
+        <div class="date"><span class="d">29</span><span class="m">декабря, вт</span></div>
+        <div class="show-info"><strong>18:00 · Концертный зал «ЮгАрт»</strong><span>Москва, Варшавское шоссе, д. 116</span></div>
+        <a class="btn btn-red" href="https://iframeab-pre12305.intickets.ru/seance/73604431/" target="_blank" rel="noopener">Билеты</a>
+      </div>
+      <div class="show" data-city="Москва" data-venue="«ЮгАрт»" data-start="2026-12-30T12:00:00+03:00">
+        <div class="date"><span class="d">30</span><span class="m">декабря, ср</span></div>
+        <div class="show-info"><strong>12:00 · Концертный зал «ЮгАрт»</strong><span>Москва, Варшавское шоссе, д. 116</span></div>
+        <a class="btn btn-red" href="https://iframeab-pre12305.intickets.ru/seance/73604435/" target="_blank" rel="noopener">Билеты</a>
+      </div>
+      <div class="show" data-city="Москва" data-venue="«ЮгАрт»" data-start="2026-12-30T15:00:00+03:00">
+        <div class="date"><span class="d">30</span><span class="m">декабря, ср</span></div>
+        <div class="show-info"><strong>15:00 · Концертный зал «ЮгАрт»</strong><span>Москва, Варшавское шоссе, д. 116</span></div>
+        <a class="btn btn-red" href="https://iframeab-pre12305.intickets.ru/seance/73604441/" target="_blank" rel="noopener">Билеты</a>
+      </div>
+      <div class="show" data-city="Москва" data-venue="«ЮгАрт»" data-start="2026-12-30T18:00:00+03:00">
+        <div class="date"><span class="d">30</span><span class="m">декабря, ср</span></div>
+        <div class="show-info"><strong>18:00 · Концертный зал «ЮгАрт»</strong><span>Москва, Варшавское шоссе, д. 116</span></div>
+        <a class="btn btn-red" href="https://iframeab-pre12305.intickets.ru/seance/73604443/" target="_blank" rel="noopener">Билеты</a>
+      </div>
+    </div>
+    <div class="no-shows" hidden>
+      <strong>Новые даты скоро появятся</strong>
+      <p>Подпишитесь на сообщество ансамбля ВКонтакте, чтобы первыми узнать о следующих показах.</p>
+      <a class="btn btn-red" href="https://vk.ru/ludmilanikolaeva_official" target="_blank" rel="noopener">Следить ВКонтакте</a>
+    </div>
+    <p class="legend">Выберите дату и время и нажмите «Билеты», чтобы купить онлайн.</p>
+  </section>
+
+  <section id="about">
+    <div class="sec-head"><h2>О спектакле</h2><button class="egg-ball" type="button" aria-label="Белый шар: нажмите, вдруг в нём золотое яйцо"><svg viewBox="0 0 64 64" aria-hidden="true"><defs><radialGradient id="bgr1" cx="35%" cy="32%" r="70%"><stop offset="0" stop-color="#fff"/><stop offset=".65" stop-color="#f3f0ea"/><stop offset="1" stop-color="#d3cdc1"/></radialGradient></defs><circle cx="32" cy="32" r="29" fill="url(#bgr1)"/><g fill="none" stroke="#b9b1a3" stroke-width="1.2" opacity=".7"><ellipse cx="32" cy="32" rx="10" ry="29"/><ellipse cx="32" cy="32" rx="21" ry="29"/></g><path d="M29 61 q3 3 6 0" stroke="#b9b1a3" stroke-width="1.5" fill="none"/></svg></button></div>
+    <div class="about">
+      <p>Знакомая с детства сказка о Сивке-бурке. Иван, которого все считали простаком, оказывается самым честным и смелым. За верность слову и доброе сердце ему помогает волшебный конь Сивка-бурка, и Иван проходит все испытания, чтобы обрести любовь и своё счастье.</p>
+      <p>Герои словно сошли с полки народных промыслов: костюмы созданы в стиле дымковской игрушки. Расписные, как глиняные фигурки, только живые: поют, танцуют и шутят.</p>
+      <p>В основе спектакля народная песня и танец. Сохранять и передавать традиции русской народной культуры — главное дело ансамбля «Русская душа». Через сказку дети знакомятся с ними легко и с радостью, а взрослые узнают то, что помнят с детства.</p>
+      <ul class="feats">
+          <li><span class="orb" aria-hidden="true"></span><b>Дымковские костюмы</b><span>Герои похожи на расписную глиняную игрушку</span></li>
+          <li><span class="orb" aria-hidden="true"></span><b>Народные песни и танцы</b><span>Яркие вокальные и танцевальные номера</span></li>
+          <li><span class="orb" aria-hidden="true"></span><b>Зрители в сказке</b><span>Дети помогают героям прямо из зала</span></li>
+          <li><span class="orb" aria-hidden="true"></span><b>Юмор</b><span>Смешно и детям, и взрослым</span></li>
+          <li><span class="orb" aria-hidden="true"></span><b>Для всей семьи</b><span>Спектакль 0+, интересно и малышам, и родителям</span></li>
+          <li><span class="orb" aria-hidden="true"></span><b>Золотое яйцо</b><span>Его ищут в спектакле, а мы спрятали ещё одно на сайте</span></li>
+      </ul>
+      <div class="egg-call">
+        <p class="egg-call-lead">Это не просто спектакль, а интерактивное музыкальное представление. Зрители становятся частью сказки, помогают героям найти волшебное золотое яйцо и поддерживают Ивана на пути к победе.</p>
+        <p class="egg-call-hint">А на сайте, как в спектакле, спрятаны белые шары. В одном из них золотое яйцо с подарком.</p>
+        <button class="egg-find egg-find-gold" type="button"><svg class="egg-gold egg-gold-btn" viewBox="0 0 80 100" aria-hidden="true"><defs><radialGradient id="egb" cx="36%" cy="30%" r="80%"><stop offset="0" stop-color="#fff1b8"/><stop offset=".25" stop-color="#f0c650"/><stop offset=".6" stop-color="#c88d1c"/><stop offset="1" stop-color="#7a4a08"/></radialGradient><radialGradient id="eg-rim2" cx="50%" cy="55%" r="55%"><stop offset=".7" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#3d2302" stop-opacity=".45"/></radialGradient><linearGradient id="eg-shine2" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fffbe8" stop-opacity=".95"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient><clipPath id="eg-clip2"><path d="M40 4 C62 4 76 40 76 62 C76 84 60 96 40 96 C20 96 4 84 4 62 C4 40 18 4 40 4 Z"/></clipPath></defs><path d="M40 4 C62 4 76 40 76 62 C76 84 60 96 40 96 C20 96 4 84 4 62 C4 40 18 4 40 4 Z" fill="url(#egb)"/><path d="M40 4 C62 4 76 40 76 62 C76 84 60 96 40 96 C20 96 4 84 4 62 C4 40 18 4 40 4 Z" fill="url(#eg-rim2)"/><ellipse cx="27" cy="26" rx="5" ry="10" fill="#fffbe8" opacity=".7" transform="rotate(-20 27 26)"/><g class="egg-sparks" fill="#fffbe8"><path d="M58 22 l1.6 5 5 1.6 -5 1.6 -1.6 5 -1.6 -5 -5 -1.6 5 -1.6z"/><path d="M18 52 l1.2 3.6 3.6 1.2 -3.6 1.2 -1.2 3.6 -1.2 -3.6 -3.6 -1.2 3.6 -1.2z"/><path d="M62 80 l1 3 3 1 -3 1 -1 3 -1 -3 -3 -1 3 -1z"/></g></svg><span>Найди золотое яйцо</span></button>
+      </div>
+    </div>
+  </section>
+
+  <section id="cast">
+    <div class="sec-head"><h2>Создатели и исполнители</h2><button class="egg-ball" type="button" aria-label="Белый шар: нажмите, вдруг в нём золотое яйцо"><svg viewBox="0 0 64 64" aria-hidden="true"><defs><radialGradient id="bgr2" cx="35%" cy="32%" r="70%"><stop offset="0" stop-color="#fff"/><stop offset=".65" stop-color="#f3f0ea"/><stop offset="1" stop-color="#d3cdc1"/></radialGradient></defs><circle cx="32" cy="32" r="29" fill="url(#bgr2)"/><g fill="none" stroke="#b9b1a3" stroke-width="1.2" opacity=".7"><ellipse cx="32" cy="32" rx="10" ry="29"/><ellipse cx="32" cy="32" rx="21" ry="29"/></g><path d="M29 61 q3 3 6 0" stroke="#b9b1a3" stroke-width="1.5" fill="none"/></svg></button></div>
+    <div class="cols">
+      <div>
+    <h3 class="prog-head">В ролях</h3>
+    <ul class="prog">
+        <li class="pr"><img class="pr-ph" src="img/nikolaeva.jpg" alt=""><span class="pr-role">Царица</span><span class="pr-dots" aria-hidden="true"></span><span class="pr-name">Людмила Николаева</span><span class="pr-note">народная артистка России</span></li>
+        <li class="pr"><img class="pr-ph" src="img/bukreev.jpg" alt=""><span class="pr-role">Старик-отец, Коза</span><span class="pr-dots" aria-hidden="true"></span><span class="pr-name">Сергей Букреев</span></li>
+        <li class="pr"><img class="pr-ph" src="img/loginov.jpg" alt=""><span class="pr-role">Иван-дурак</span><span class="pr-dots" aria-hidden="true"></span><span class="pr-name">Андрей Логинов</span></li>
+        <li class="pr"><img class="pr-ph" src="img/bizyaeva.jpg" alt=""><span class="pr-role">Елена Прекрасная</span><span class="pr-dots" aria-hidden="true"></span><span class="pr-name">Анна Бизяева</span></li>
+        <li class="pr"><img class="pr-ph" src="img/tikhonova.jpg" alt=""><span class="pr-role">Сивка-бурка (Сивка)</span><span class="pr-dots" aria-hidden="true"></span><span class="pr-name">Анастасия Тихонова</span></li>
+        <li class="pr"><img class="pr-ph" src="img/starodubova.jpg" alt=""><span class="pr-role">Сивка-бурка (Бурка)</span><span class="pr-dots" aria-hidden="true"></span><span class="pr-name">Евгения Стародубова</span></li>
+        <li class="pr"><img class="pr-ph" src="img/kandaulov.jpg" alt=""><span class="pr-role">Брат Дмитрий</span><span class="pr-dots" aria-hidden="true"></span><span class="pr-name">Марат Кандаулов</span></li>
+        <li class="pr"><img class="pr-ph" src="img/yarmish.jpg" alt=""><span class="pr-role">Брат Алексей</span><span class="pr-dots" aria-hidden="true"></span><span class="pr-name">Ян Ярмиш</span></li>
+        <li class="pr"><img class="pr-ph" src="img/biryukova.jpg" alt=""><span class="pr-role">Горничная, Палач</span><span class="pr-dots" aria-hidden="true"></span><span class="pr-name">Василиса Бирюкова</span></li>
+    </ul>
+      </div>
+      <div>
+    <h3 class="prog-head">Создатели спектакля</h3>
+    <ul class="prog">
+        <li class="pr"><img class="pr-ph" src="img/nikolaeva.jpg" alt=""><span class="pr-role">Художественный руководитель, автор музыки песен</span><span class="pr-dots" aria-hidden="true"></span><span class="pr-name">Людмила Николаева</span><span class="pr-note">народная артистка России</span></li>
+        <li class="pr"><img class="pr-ph" src="img/bakhtiev.jpg" alt=""><span class="pr-role">Режиссёр-постановщик</span><span class="pr-dots" aria-hidden="true"></span><span class="pr-name">Дамир Бахтиев</span></li>
+        <li class="pr"><img class="pr-ph" src="img/bukreev.jpg" alt=""><span class="pr-role">Главный балетмейстер-постановщик</span><span class="pr-dots" aria-hidden="true"></span><span class="pr-name">Сергей Букреев</span></li>
+        <li class="pr"><img class="pr-ph" src="img/kukhno.jpg" alt=""><span class="pr-role">Художник по костюмам</span><span class="pr-dots" aria-hidden="true"></span><span class="pr-name">Анастасия Данилова-Кухно</span></li>
+        <li class="pr"><img class="pr-ph" src="img/ignatov.jpg" alt=""><span class="pr-role">Саунд-продюсер</span><span class="pr-dots" aria-hidden="true"></span><span class="pr-name">Михаил Игнатов</span></li>
+        <li class="pr"><img class="pr-ph" src="img/klochkov.jpg" alt=""><span class="pr-role">Звукорежиссёр</span><span class="pr-dots" aria-hidden="true"></span><span class="pr-name">Игорь Клочков</span></li>
+        <li class="pr"><img class="pr-ph" src="img/loginova.jpg" alt=""><span class="pr-role">Главный администратор</span><span class="pr-dots" aria-hidden="true"></span><span class="pr-name">Мария Логинова</span></li>
+        <li class="pr"><img class="pr-ph" src="img/vavilina.jpg" alt=""><span class="pr-role">Продюсер проекта, автор текстов песен</span><span class="pr-dots" aria-hidden="true"></span><span class="pr-name">Ольга Вавилина</span></li>
+    </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="video">
+    <div class="sec-head"><h2>Видео</h2></div>
+    <div class="videos" style="grid-template-columns: minmax(0, 1fr); max-width: 820px; margin: 0 auto;">
+      <a class="video" href="https://vkvideo.ru/video-21448968_456240158?list=f14d604c46a84ba553" target="_blank" rel="noopener" data-embed="https://vkvideo.ru/video_ext.php?oid=-21448968&amp;id=456240158&amp;hd=2&amp;autoplay=1">
+        <div class="thumb" style="--img: url(img/photo-stage.jpg)"><span class="tag">Тизер</span></div>
+        <strong>Тизер спектакля</strong>
+      </a>
+    </div>
+  </section>
+
+  <section id="photo">
+    <div class="sec-head"><h2>Фото</h2><span class="sec-note">Кадры со спектакля</span><button class="egg-ball" type="button" aria-label="Белый шар: нажмите, вдруг в нём золотое яйцо"><svg viewBox="0 0 64 64" aria-hidden="true"><defs><radialGradient id="bgr3" cx="35%" cy="32%" r="70%"><stop offset="0" stop-color="#fff"/><stop offset=".65" stop-color="#f3f0ea"/><stop offset="1" stop-color="#d3cdc1"/></radialGradient></defs><circle cx="32" cy="32" r="29" fill="url(#bgr3)"/><g fill="none" stroke="#b9b1a3" stroke-width="1.2" opacity=".7"><ellipse cx="32" cy="32" rx="10" ry="29"/><ellipse cx="32" cy="32" rx="21" ry="29"/></g><path d="M29 61 q3 3 6 0" stroke="#b9b1a3" stroke-width="1.5" fill="none"/></svg></button></div>
+    <div class="photos">
+      <figure class="photo land"><img src="img/photo-stage.jpg" alt="Все герои сказки на сцене у царского дворца" loading="lazy"></figure>
+      <figure class="photo"><img src="img/photo-tsaritsa.jpg" alt="Царица в кокошнике и расписном сарафане" loading="lazy"></figure>
+      <figure class="photo"><img src="img/photo-horse.jpg" alt="Сивка-бурка скачет под луной" loading="lazy"></figure>
+      <figure class="photo"><img src="img/photo-goat.jpg" alt="Елена Прекрасная и Коза с гармонью" loading="lazy"></figure>
+      <figure class="photo land"><img src="img/photo-brothers3.jpg" alt="Три брата" loading="lazy"></figure>
+      <figure class="photo"><img src="img/photo-house.jpg" alt="Иван и Елена Прекрасная у избы" loading="lazy"></figure>
+      <figure class="photo"><img src="img/photo-brothers2.jpg" alt="Братья Дмитрий и Алексей" loading="lazy"></figure>
+      <figure class="photo"><img src="img/photo-night.jpg" alt="Иван и Старик-отец ночью в поле" loading="lazy"></figure>
+      <figure class="photo"><img src="img/photo-ivan-moon.jpg" alt="Иван под луной в цветущем поле" loading="lazy"></figure>
+      <figure class="photo"><img src="img/photo-elena-red.jpg" alt="Елена Прекрасная в красном платье с волшебным покрывалом" loading="lazy"></figure>
+    </div>
+  </section>
+
+  <section id="reviews">
+    <div class="sec-head"><h2>Отзывы</h2><span class="sec-note">Родители и дети о спектакле</span></div>
+    <div class="quotes">
+      <figure class="quote">
+        <blockquote><p>Замечательный детский спектакль «Сивка-Бурка»! 🐴✨</p><p>Музыкальный спектакль с яркими, красочными костюмами, прекрасными актёрами и душевной атмосферой настоящей сказки. 🎭🎶</p><p>Очень весело, интересно и увлекательно! Спектакль дарит море положительных эмоций, улыбок и радости как детям, так и взрослым. Настоящее погружение в волшебный мир сказки! ❤️</p><p>С удовольствием рекомендуем для семейного просмотра! 🌟</p></blockquote>
+        <figcaption>Софья</figcaption>
+      </figure>
+      <figure class="quote">
+        <blockquote><p>Честно говоря, шли на спектакль ради дочки, ожидания были как от любого детского мюзикла (читать: средненькие). Но в итоге получили огромное удовольствие! Очень качественная постановка, прекрасная музыка и замечательная игра артистов. Видно, что коллектив работает с душой, а не лишь бы отыграть.</p><p>Добрый и поучительный спектакль для всей семьи. И, что немаловажно, весьма современный, шутке про айти отдельный респект)))</p><p>Отдельно хочется отметить Людмилу Николаеву — её появление на сцене вызывает искреннее восхищение. Спасибо!</p></blockquote>
+        <figcaption>Виктория</figcaption>
+      </figure>
+      <figure class="quote">
+        <blockquote><p>Посетили спектакль в г. Старый Оскол. Понравилось всей семье)) от 2 до 48 лет!)) Классные интерактивы с залом, артисты выходят к зрителям, очень красивые костюмы! И сюжет интересный, собирательный из разных сказок про Ивана-дурака.</p><p>Сейчас много детских сказок, но таких добрых и народных — мало) Вообще очень круто, советуем к просмотру!</p></blockquote>
+        <figcaption>Ольга</figcaption>
+      </figure>
+    </div>
+    <div class="write-review">
+      <div>
+        <strong>Были на спектакле?</strong>
+        <p>Расскажите, что понравилось вам и детям. Нам очень важно ваше мнение.</p>
+      </div>
+      <a class="btn btn-red" href="https://msk.kassir.ru/teatr/teatralizovannoe-muzyikalnoe-predstavlenie-sivka-burka" target="_blank" rel="noopener" data-review-link>Оставить отзыв</a>
+    </div>
+  </section>
+
+  <section id="contacts">
+    <div class="sec-head"><h2>Контакты</h2><button class="egg-ball" type="button" aria-label="Белый шар: нажмите, вдруг в нём золотое яйцо"><svg viewBox="0 0 64 64" aria-hidden="true"><defs><radialGradient id="bgr4" cx="35%" cy="32%" r="70%"><stop offset="0" stop-color="#fff"/><stop offset=".65" stop-color="#f3f0ea"/><stop offset="1" stop-color="#d3cdc1"/></radialGradient></defs><circle cx="32" cy="32" r="29" fill="url(#bgr4)"/><g fill="none" stroke="#b9b1a3" stroke-width="1.2" opacity=".7"><ellipse cx="32" cy="32" rx="10" ry="29"/><ellipse cx="32" cy="32" rx="21" ry="29"/></g><path d="M29 61 q3 3 6 0" stroke="#b9b1a3" stroke-width="1.5" fill="none"/></svg></button></div>
+    <div class="contacts">
+      <div><h3>Справки по телефону</h3><p><a href="tel:+79166851731">8 (916) 685-17-31</a></p></div>
+      <div><h3>Почта</h3><p><a href="mailto:mkcnt.rusdusha@yandex.ru">mkcnt.rusdusha@yandex.ru</a></p></div>
+      <div><h3>Юридический адрес</h3><p>Москва, улица Олонецкая, дом 15А</p></div>
+      <div><h3>Соцсети</h3><p class="socials"><a href="https://youtube.com/@lyudmilanikolaeva" target="_blank" rel="noopener" aria-label="YouTube" title="YouTube"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="5.5" width="20" height="13" rx="4" fill="currentColor"/><path d="M10 9.2v5.6l4.8-2.8z" fill="var(--soc-bg)"/></svg></a><a href="https://rutube.ru/channel/24698539/" target="_blank" rel="noopener" aria-label="RUTUBE" title="RUTUBE"><svg viewBox="0 0 24 24" aria-hidden="true"><text x="11" y="17" text-anchor="middle" font-family="Arial, sans-serif" font-weight="700" font-size="15" fill="currentColor">R</text><circle cx="18" cy="6.5" r="2.2" fill="#e8344e"/></svg></a><a href="https://dzen.ru/list/music/liudmila-nikolaeva" target="_blank" rel="noopener" aria-label="Дзен" title="Дзен"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 3c.25 4.9 4.1 8.75 9 9-4.9.25-8.75 4.1-9 9-.25-4.9-4.1-8.75-9-9 4.9-.25 8.75-4.1 9-9z"/></svg></a><a href="https://vk.ru/ludmilanikolaeva_official" target="_blank" rel="noopener" aria-label="ВКонтакте" title="ВКонтакте"><svg viewBox="0 0 24 24" aria-hidden="true"><text x="12" y="16.2" text-anchor="middle" font-family="Arial, sans-serif" font-weight="700" font-size="11" fill="currentColor">VK</text></svg></a><a href="https://max.ru/join/CfSgUBUD7K_JC97-wlo_ckmvL06I5iwYfQoP8JZffEw" target="_blank" rel="noopener" aria-label="MAX" title="MAX"><svg viewBox="0 0 24 24" aria-hidden="true"><text x="12" y="15.6" text-anchor="middle" font-family="Arial, sans-serif" font-weight="700" font-size="8.4" letter-spacing=".2" fill="currentColor">MAX</text></svg></a><a href="https://t.me/Ludmilanikolava_official" target="_blank" rel="noopener" aria-label="Telegram" title="Telegram"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20.7 4.2 3.4 10.9c-1.2.5-1.1 1.6-.1 1.9l4.4 1.4 1.7 5.2c.2.6.4.8.8.8s.6-.2.9-.5l2.2-2.1 4.5 3.3c.8.5 1.4.2 1.6-.8l2.9-13.6c.3-1.2-.4-1.8-1.6-1.3zM9.6 14.4l7.9-7.2c.4-.3-.1-.5-.6-.2l-9 5.8"/></svg></a><a href="https://www.instagram.com/ludmilanikolaeva.ru" target="_blank" rel="noopener" aria-label="Instagram" title="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r=".6" fill="currentColor"/></svg></a></p></div>
+    </div>
+  </section>
+</main>
+<audio class="music" src="img/music.mp3" loop preload="none"></audio>
+<script>
+(function () {
+  var btn = document.querySelector('.music-btn'), au = document.querySelector('audio.music');
+  if (!btn || !au) return;
+  au.volume = 0.5;
+  btn.addEventListener('click', function () {
+    if (au.paused) { au.play().then(function () { btn.setAttribute('aria-pressed', 'true'); btn.setAttribute('aria-label', 'Выключить музыку'); }).catch(function () {}); }
+    else { au.pause(); btn.setAttribute('aria-pressed', 'false'); btn.setAttribute('aria-label', 'Включить музыку'); }
+  });
+})();
+</script>
+
+<div class="egg-modal" hidden role="dialog" aria-modal="true" aria-labelledby="egg-title">
+  <div class="egg-card">
+    <button class="egg-close" type="button" aria-label="Закрыть">×</button>
+    <svg class="egg-gold" viewBox="0 0 80 100" aria-hidden="true"><defs><radialGradient id="eg" cx="36%" cy="30%" r="80%"><stop offset="0" stop-color="#fff1b8"/><stop offset=".25" stop-color="#f0c650"/><stop offset=".6" stop-color="#c88d1c"/><stop offset="1" stop-color="#7a4a08"/></radialGradient><radialGradient id="eg-rim" cx="50%" cy="55%" r="55%"><stop offset=".7" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#3d2302" stop-opacity=".45"/></radialGradient><linearGradient id="eg-shine" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fffbe8" stop-opacity=".95"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient><clipPath id="eg-clip"><path d="M40 4 C62 4 76 40 76 62 C76 84 60 96 40 96 C20 96 4 84 4 62 C4 40 18 4 40 4 Z"/></clipPath></defs><path d="M40 4 C62 4 76 40 76 62 C76 84 60 96 40 96 C20 96 4 84 4 62 C4 40 18 4 40 4 Z" fill="url(#eg)"/><path d="M40 4 C62 4 76 40 76 62 C76 84 60 96 40 96 C20 96 4 84 4 62 C4 40 18 4 40 4 Z" fill="url(#eg-rim)"/><ellipse cx="27" cy="26" rx="5" ry="10" fill="#fffbe8" opacity=".7" transform="rotate(-20 27 26)"/><g class="egg-sparks" fill="#fffbe8"><path d="M58 22 l1.6 5 5 1.6 -5 1.6 -1.6 5 -1.6 -5 -5 -1.6 5 -1.6z"/><path d="M18 52 l1.2 3.6 3.6 1.2 -3.6 1.2 -1.2 3.6 -1.2 -3.6 -3.6 -1.2 3.6 -1.2z"/><path d="M62 80 l1 3 3 1 -3 1 -1 3 -1 -3 -3 -1 3 -1z"/></g></svg>
+    <h3 id="egg-title">Вы нашли золотое яйцо!</h3>
+    <p>Совсем как Иван в сказке. Ваш подарок — промокод на скидку на билеты:</p>
+    <p class="egg-prize"><b class="egg-code" data-code>ЧУДО2027</b> <button class="egg-copy" type="button">Скопировать</button></p>
+    <p class="egg-note">Введите его при оплате билетов на сайте.</p>
+    <a class="btn btn-red" href="#afisha">Выбрать дату</a>
+  </div>
+</div>
+
+
+<footer>
+  <div class="wrap">
+    <span class="end">Тут и сказке конец</span>
+    <span>Организатор ГБУК г. Москвы «МКЦ НТ «Русская душа» п/р Л. Николаевой» · ОГРН 1047796946515</span>
+  </div>
+</footer>
+
+<script>
+(function () {
+  // Афиша: прошедшие сеансы скрываются сами; если показов не осталось, вместо списка сообщение
+  var now = Date.now();
+  var rows = [].slice.call(document.querySelectorAll('.show[data-start]'));
+  var upcoming = rows.filter(function (r) {
+    var past = new Date(r.getAttribute('data-start')).getTime() + 30 * 60000 < now;
+    r.hidden = past;
+    return !past;
+  });
+
+  // Выбор года, месяца и места: город + зал
+  var MONTHS = ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'];
+  var pick = { year: null, month: null, place: null };
+  function monthOf(r) { return r.getAttribute('data-start').slice(0, 7); }
+  function placeOf(r) { return r.getAttribute('data-city') + ' · ' + (r.getAttribute('data-venue') || ''); }
+  function chips(kind, items) {
+    var box = document.querySelector('[data-chips="' + kind + '"]');
+    box.innerHTML = '';
+    items.forEach(function (it) {
+      var b = document.createElement('button');
+      b.type = 'button'; b.className = 'chip'; b.textContent = it.label;
+      b.disabled = !!it.off;
+      if (it.off) b.title = 'Показов пока нет';
+      b.setAttribute('aria-pressed', String(pick[kind] === it.value));
+      b.addEventListener('click', function () {
+        pick[kind] = it.value;
+        if (kind === 'year') pick.month = null;
+        if (kind !== 'place') pick.place = null;
+        render();
+      });
+      box.appendChild(b);
+    });
+    var on = box.querySelector('[aria-pressed="true"]');
+    if (on && box.scrollWidth > box.clientWidth) box.scrollLeft = on.offsetLeft - box.offsetLeft - 16;
+  }
+  function render() {
+    var d = new Date(), y0 = d.getFullYear(), m0 = d.getMonth(), years = [];
+    // текущий год и следующий; позже добавятся годы, если в афише есть показы дальше
+    upcoming.forEach(function (r) { var y = +r.getAttribute('data-start').slice(0, 4); if (years.indexOf(y) < 0) years.push(y); });
+    [y0, y0 + 1].forEach(function (y) { if (years.indexOf(y) < 0) years.push(y); });
+    years.sort();
+    function hasIn(prefix) { return upcoming.some(function (r) { return r.getAttribute('data-start').indexOf(prefix) === 0; }); }
+    if (pick.year === null) {
+      var firstShow = upcoming.map(function (r) { return r.getAttribute('data-start'); }).sort()[0];
+      pick.year = firstShow ? +firstShow.slice(0, 4) : y0;
+    }
+    chips('year', years.map(function (y) { return { value: y, label: String(y) }; }));
+    var months = [];
+    for (var m = pick.year === y0 ? m0 : 0; m < 12; m++) {
+      var key = pick.year + '-' + (m < 9 ? '0' : '') + (m + 1);
+      months.push({ value: key, label: MONTHS[m], off: !hasIn(key) });
+    }
+    if (!months.some(function (x) { return x.value === pick.month && !x.off; })) {
+      var first = months.filter(function (x) { return !x.off; })[0];
+      pick.month = first ? first.value : null;
+    }
+    chips('month', months);
+    upcoming.forEach(function (r) {
+      r.hidden = monthOf(r) !== pick.month;
+    });
+    // в выбранном году показов ещё нет: вместо списка сообщение о новых датах
+    document.querySelector('.shows').hidden = !pick.month;
+    document.querySelector('.no-shows').hidden = !!pick.month;
+  }
+  if (upcoming.length) render(); else document.querySelector('.filters').hidden = true;
+  if (!upcoming.length) {
+    document.querySelector('.shows').hidden = true;
+    document.querySelector('.no-shows').hidden = false;
+    [].forEach.call(document.querySelectorAll('[data-hero-dates]'), function (hd) { hd.querySelector('b').textContent = 'Новые даты'; hd.querySelector('span').textContent = 'скоро появятся'; });
+    [].forEach.call(document.querySelectorAll('[data-hero-place]'), function (el) { el.hidden = true; });
+    [].forEach.call(document.querySelectorAll('[data-hero-buy]'), function (buy) { buy.innerHTML = '<span class="gift-fallback">Узнать о новых датах</span>'; });
+  }
+
+  // Заклинание появляется по словам
+  var spell = document.querySelector('.spell');
+  if (spell) spell.innerHTML = spell.textContent.split(' ').map(function (w, i) {
+    return '<span class="w" style="--i:' + i + '">' + w + '</span>';
+  }).join(' ');
+
+  // Новогодний фон: падают снежинки, блестят ёлочные шары, мерцают искорки на узорах
+  var canvas = document.getElementById('sky');
+  var ctx = canvas.getContext('2d');
+  var hero = canvas.parentElement;
+  var still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var IMG_W = 1024, IMG_H = 1536;
+  // Шары на картинке фона (в пикселях исходного изображения)
+  var balls = [{ x: 897, y: 103, r: 46 }, { x: 980, y: 183, r: 31 }];
+  // Те же шары на фоне по макету (в пикселях макета 1586×914)
+  var deskBalls = [{ x: 1473, y: 87, r: 50 }, { x: 1553, y: 139, r: 28 }];
+  var W = 0, H = 0, scale = 1, offX = 0, flakes = [], glints = [];
+
+  function resize() {
+    var dpr = Math.min(window.devicePixelRatio || 1, 2);
+    W = hero.clientWidth; H = hero.clientHeight;
+    canvas.width = W * dpr; canvas.height = H * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    scale = Math.max(W / IMG_W, H / IMG_H);
+    offX = (W - IMG_W * scale) / 2;
+    flakes = [];
+    var n = Math.round(W * H / 9000);
+    for (var i = 0; i < n; i++) flakes.push(newFlake(true));
+  }
+  function newFlake(anyY) {
+    var big = Math.random() < 0.18;
+    return { x: Math.random() * W, y: anyY ? Math.random() * H : -20, big: big,
+      r: big ? 6 + Math.random() * 7 : 1.2 + Math.random() * 2.4,
+      vy: big ? 0.02 + Math.random() * 0.02 : 0.025 + Math.random() * 0.04,
+      sway: Math.random() * 6.28, sw: 0.0006 + Math.random() * 0.0008,
+      rot: Math.random() * 6.28, vr: (Math.random() - 0.5) * 0.0008, a: 0.65 + Math.random() * 0.35 };
+  }
+  function flakeShape(f) {
+    ctx.save(); ctx.translate(f.x, f.y); ctx.rotate(f.rot);
+    ctx.strokeStyle = '#ffffff'; ctx.lineWidth = 1.4; ctx.lineCap = 'round';
+    for (var k = 0; k < 8; k++) {
+      ctx.rotate(Math.PI / 3);
+      ctx.beginPath(); ctx.moveTo(0, 0); ctx.lineTo(0, -f.r);
+      ctx.moveTo(0, -f.r * 0.55); ctx.lineTo(f.r * 0.28, -f.r * 0.8);
+      ctx.moveTo(0, -f.r * 0.55); ctx.lineTo(-f.r * 0.28, -f.r * 0.8);
+      ctx.stroke();
+    }
+    ctx.restore();
+  }
+  function star(x, y, size, a) {
+    ctx.globalAlpha = a;
+    var g = ctx.createRadialGradient(x, y, 0, x, y, size * 1.6);
+    g.addColorStop(0, 'rgba(255, 255, 255, 0.9)'); g.addColorStop(1, 'rgba(255, 245, 210, 0)');
+    ctx.fillStyle = g; ctx.beginPath(); ctx.arc(x, y, size * 1.6, 0, 6.29); ctx.fill();
+    ctx.fillStyle = '#ffffff';
+    ctx.beginPath();
+    ctx.moveTo(x, y - size * 2.4); ctx.quadraticCurveTo(x, y, x + size * 2.4, y);
+    ctx.quadraticCurveTo(x, y, x, y + size * 2.4); ctx.quadraticCurveTo(x, y, x - size * 2.4, y);
+    ctx.quadraticCurveTo(x, y, x, y - size * 2.4); ctx.fill();
+  }
+
+  var ballClock = 0, nextGlint = 300;
+  function draw(time, dt) {
+    ctx.clearRect(0, 0, W, H);
+    // блеск на шарах: мягкое сияние и звёздочка-блик
+    for (var b = 0; b < balls.length; b++) {
+      var desk = window.innerWidth >= 900, bx, by, br;
+      if (desk) { var dk = deskBalls[b]; bx = dk.x / 1586 * W; by = dk.y / 914 * H; br = dk.r / 1586 * W; }
+      else { bx = W - (offX + balls[b].x * scale); by = balls[b].y * scale; br = balls[b].r * scale; }
+      if (by - br > H || bx - br > W) continue;
+      var pulse = still ? 0.5 : 0.5 + 0.5 * Math.sin(time * 0.0016 + b * 2.1);
+      var g = ctx.createRadialGradient(bx, by, br * 0.6, bx, by, br * 1.9);
+      g.addColorStop(0, 'rgba(255, 236, 180, ' + (0.35 * pulse) + ')'); g.addColorStop(1, 'rgba(255, 236, 180, 0)');
+      ctx.globalAlpha = 1; ctx.fillStyle = g; ctx.beginPath(); ctx.arc(bx, by, br * 1.9, 0, 6.29); ctx.fill();
+      var tw = still ? 0.8 : Math.max(0, Math.sin(time * 0.0023 + b * 1.7));
+      star(bx - br * 0.38, by - br * 0.38, Math.max(2.5, br * 0.12) * (0.6 + tw * 0.6), 0.35 + tw * 0.65);
+    }
+    if (still) { ctx.globalAlpha = 1; return; }
+
+    // искорки на узорах по краям
+    nextGlint -= dt;
+    if (nextGlint <= 0) {
+      var side = Math.random() < 0.5 ? Math.random() * W * 0.28 : W - Math.random() * W * 0.28;
+      glints.push({ x: side, y: Math.random() * H, life: 0, dur: 900 + Math.random() * 700, s: 1.6 + Math.random() * 2.2 });
+      nextGlint = 120 + Math.random() * 220;
+    }
+    for (var i = glints.length - 1; i >= 0; i--) {
+      var gl = glints[i]; gl.life += dt;
+      if (gl.life >= gl.dur) { glints.splice(i, 1); continue; }
+      var k = Math.sin(Math.PI * gl.life / gl.dur);
+      star(gl.x, gl.y, gl.s * k, k);
+    }
+
+    // снегопад
+    for (var j = 0; j < flakes.length; j++) {
+      var f = flakes[j];
+      f.y += f.vy * dt; f.sway += f.sw * dt; f.rot += f.vr * dt;
+      f.x += Math.sin(f.sway) * 0.25;
+      if (f.y > H + 20) flakes[j] = f = newFlake(false);
+      ctx.globalAlpha = f.a;
+      if (f.big) flakeShape(f);
+      else { ctx.fillStyle = '#ffffff'; ctx.beginPath(); ctx.arc(f.x, f.y, f.r, 0, 6.29); ctx.fill(); }
+    }
+    ctx.globalAlpha = 1;
+  }
+
+  var last = performance.now();
+  function frame(now) {
+    var dt = Math.min(now - last, 50); last = now;
+    draw(now, dt);
+    if (!still) requestAnimationFrame(frame);
+  }
+  resize();
+  window.addEventListener('resize', function () { resize(); if (still) draw(0, 0); });
+  requestAnimationFrame(frame);
+})();
+</script>
+
+<script>
+(function () {
+  // Волшебная палочка: за курсором или пальцем тянется золотая пыльца, от нажатия разлетаются белые шары, как в спектакле, и золото
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var cv = document.createElement('canvas');
+  cv.className = 'wand'; cv.setAttribute('aria-hidden', 'true');
+  document.body.appendChild(cv);
+  var ctx = cv.getContext('2d'), W = 0, H = 0, parts = [], running = false, last = 0, lx = null, ly = null;
+  var COLORS = ['#c8901f', '#e0a92a', '#f0c75a', '#f7dc8a', '#b07a18', '#d9a12a'];
+
+  function size() {
+    var dpr = Math.min(window.devicePixelRatio || 1, 2);
+    W = window.innerWidth; H = window.innerHeight;
+    cv.width = W * dpr; cv.height = H * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+  function add(x, y, vx, vy, big) {
+    parts.push({ x: x, y: y, vx: vx, vy: vy, life: 0, dur: (big ? 900 : 650) + Math.random() * 600,
+      s: (big ? 2.2 : 1.8) + Math.random() * (big ? 3.5 : 2.6), c: COLORS[(Math.random() * COLORS.length) | 0],
+      rot: Math.random() * 6.28, ball: false, glint: Math.random() < 0.18 });
+    if (parts.length > 400) parts.splice(0, parts.length - 400);
+    if (!running) { running = true; last = performance.now(); requestAnimationFrame(frame); }
+  }
+  function trail(x, y) {
+    var dist = lx === null ? 0 : Math.hypot(x - lx, y - ly);
+    var n = Math.min(4, 1 + Math.floor(dist / 12));
+    for (var i = 0; i < n; i++) {
+      var t = n > 1 ? i / (n - 1) : 1, px = lx === null ? x : lx + (x - lx) * t, py = ly === null ? y : ly + (y - ly) * t;
+      add(px + (Math.random() - 0.5) * 6, py + (Math.random() - 0.5) * 6, (Math.random() - 0.5) * 0.05, 0.01 + Math.random() * 0.04, false);
+    }
+    lx = x; ly = y;
+  }
+  function burst(x, y) {
+    for (var i = 0; i < 26; i++) {
+      var a = Math.random() * 6.28, v = 0.08 + Math.random() * 0.22;
+      add(x, y, Math.cos(a) * v, Math.sin(a) * v - 0.05, true);
+    }
+    // белые шары разлетаются в стороны, медленно всплывают и гаснут
+    var nb = 5 + ((Math.random() * 3) | 0);
+    for (var j = 0; j < nb; j++) {
+      var ab = (j / nb) * 6.28 + Math.random() * 0.6, vb = 0.06 + Math.random() * 0.1;
+      parts.push({ x: x, y: y, vx: Math.cos(ab) * vb, vy: Math.sin(ab) * vb - 0.03, life: 0, dur: 1300 + Math.random() * 700,
+        s: 9 + Math.random() * 16, rot: Math.random() * 6.28, ball: true });
+    }
+  }
+  function sparkle(p, a) {
+    ctx.save(); ctx.translate(p.x, p.y); ctx.rotate(p.rot);
+    if (p.ball) {
+      // белый надувной шар со швами, как в спектакле; растёт при вылете и тает
+      var grow = Math.min(1, p.life / 250), r = p.s * (0.4 + 0.6 * grow);
+      ctx.globalAlpha = a * 0.25; ctx.fillStyle = '#6b5a3a';
+      ctx.beginPath(); ctx.ellipse(r * 0.1, r * 0.15, r, r * 0.98, 0, 0, 6.29); ctx.fill();
+      var g = ctx.createRadialGradient(-r * 0.35, -r * 0.4, r * 0.1, 0, 0, r);
+      g.addColorStop(0, '#ffffff'); g.addColorStop(0.65, '#f4f2ee'); g.addColorStop(1, '#d6d1c7');
+      ctx.globalAlpha = a; ctx.fillStyle = g;
+      ctx.beginPath(); ctx.arc(0, 0, r, 0, 6.29); ctx.fill();
+      ctx.strokeStyle = 'rgba(160, 150, 135, 0.55)'; ctx.lineWidth = Math.max(0.6, r * 0.05);
+      ctx.beginPath(); ctx.ellipse(0, 0, r * 0.35, r * 0.98, 0, 0, 6.29); ctx.stroke();
+      ctx.beginPath(); ctx.ellipse(0, 0, r * 0.72, r * 0.98, 0, 0, 6.29); ctx.stroke();
+    } else {
+      // золотая песчинка с бликом
+      var g = ctx.createRadialGradient(-p.s * 0.25, -p.s * 0.25, 0, 0, 0, p.s);
+      g.addColorStop(0, '#fff3c4'); g.addColorStop(0.45, p.c); g.addColorStop(1, '#8a5d10');
+      ctx.globalAlpha = a; ctx.fillStyle = g;
+      ctx.beginPath(); ctx.arc(0, 0, p.s * 0.8, 0, 6.29); ctx.fill();
+      if (p.glint) {
+        var s = p.s * 2.4 * (0.6 + 0.4 * Math.sin(p.life * 0.02));
+        ctx.globalAlpha = a * 0.85; ctx.fillStyle = '#fff6d8';
+        ctx.fillRect(-s, -0.5, s * 2, 1); ctx.fillRect(-0.5, -s, 1, s * 2);
+      }
+    }
+    ctx.restore();
+  }
+  function frame(now) {
+    var dt = Math.min(now - last, 50); last = now;
+    ctx.clearRect(0, 0, W, H);
+    for (var i = parts.length - 1; i >= 0; i--) {
+      var p = parts[i]; p.life += dt;
+      if (p.life >= p.dur) { parts.splice(i, 1); continue; }
+      if (p.ball) { p.vy -= 0.00002 * dt; p.vx *= 0.975; p.vy *= 0.975; p.rot += 0.0008 * dt; } else p.vy += 0.00012 * dt;
+      p.vx *= 0.985; p.x += p.vx * dt; p.y += p.vy * dt; if (!p.ball) p.rot += 0.004 * dt;
+      var k = p.life / p.dur, a = k < 0.15 ? k / 0.15 : 1 - (k - 0.15) / 0.85;
+      sparkle(p, a * (0.75 + 0.25 * Math.sin(now * 0.03 + i)));
+    }
+    if (parts.length) requestAnimationFrame(frame); else { running = false; ctx.clearRect(0, 0, W, H); }
+  }
+  window.addEventListener('pointermove', function (e) { trail(e.clientX, e.clientY); }, { passive: true });
+  window.addEventListener('pointerdown', function (e) { lx = null; burst(e.clientX, e.clientY); }, { passive: true });
+  window.addEventListener('pointerleave', function () { lx = null; });
+  document.addEventListener('mouseleave', function () { lx = null; });
+  size();
+  window.addEventListener('resize', size);
+})();
+</script>
+
+<script>
+(function () {
+  // «Найди золотое яйцо»: в одном из белых шаров (каждый раз в случайном) спрятано яйцо
+  var balls = [].slice.call(document.querySelectorAll('.egg-ball'));
+  if (!balls.length) return;
+  balls.forEach(function (b) {
+    b.style.setProperty('--fd', (2.2 + Math.random() * 1.4).toFixed(2) + 's');
+    b.style.setProperty('--fdel', (-Math.random() * 3).toFixed(2) + 's');
+    b.style.setProperty('--ndel', (-Math.random() * 5).toFixed(2) + 's');
+  });
+  var modal = document.querySelector('.egg-modal'), lucky = (Math.random() * balls.length) | 0, popped = 0;
+  balls.forEach(function (b, i) {
+    b.addEventListener('click', function () {
+      b.classList.add('pop'); popped++;
+      setTimeout(function () { b.style.visibility = 'hidden'; }, 350);
+      // если яйцо так и не нашлось, оно окажется в последнем шаре
+      if (i === lucky || popped === balls.length) { lucky = -2; setTimeout(function () { modal.hidden = false; modal.querySelector('.egg-close').focus(); }, 380); }
+    });
+  });
+  // кнопка «Найди золотое яйцо»: ведёт к ближайшему ещё не лопнувшему шару и подсвечивает его
+  var finder = document.querySelector('.egg-find');
+  if (finder) finder.addEventListener('click', function () {
+    var left = balls.filter(function (b) { return !b.classList.contains('pop'); });
+    var next = left.filter(function (b) { return b.getBoundingClientRect().top > finder.getBoundingClientRect().bottom; })[0] || left[0];
+    if (!next) return;
+    balls.forEach(function (b) { b.classList.remove('call'); });
+    next.classList.add('call');
+    next.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  });
+  // золотые искры вокруг шаров в «О спектакле»
+  [].forEach.call(document.querySelectorAll('.feats .orb'), function (orb) {
+    for (var k = 0; k < 8; k++) {
+      // искра вспыхивает в случайной точке на краю шара или чуть снаружи
+      var d = document.createElement('i'), ang = Math.random() * 6.283, rad = 44 + Math.random() * 22;
+      d.className = 'spark';
+      d.style.setProperty('--x', (46 + Math.cos(ang) * rad).toFixed(0) + 'px');
+      d.style.setProperty('--y', (46 + Math.sin(ang) * rad).toFixed(0) + 'px');
+      d.style.setProperty('--s', (14 + Math.random() * 14).toFixed(0) + 'px');
+      d.style.setProperty('--dur', (1.6 + Math.random() * 1.6).toFixed(2) + 's');
+      d.style.setProperty('--del', (-Math.random() * 3).toFixed(2) + 's');
+      orb.appendChild(d);
+    }
+  });
+  var copy = modal.querySelector('.egg-copy');
+  copy.addEventListener('click', function () {
+    var code = modal.querySelector('[data-code]').textContent.trim();
+    function done() { copy.textContent = 'Скопировано'; }
+    try { navigator.clipboard.writeText(code).then(done, done); } catch (e) { done(); }
+  });
+  function close() { modal.hidden = true; }
+  modal.querySelector('.egg-close').addEventListener('click', close);
+  modal.querySelector('a').addEventListener('click', close);
+  modal.addEventListener('click', function (e) { if (e.target === modal) close(); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); });
+})();
+</script>
+
+
+
+
+<script>
+(function () {
+  if (!('IntersectionObserver' in window) || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var els = document.querySelectorAll('main section .sec-head, main section > p, main section .about p, .feats li, .egg-call, .prog-head, .pr, .show, .write-review, .contacts > div, .thumb, .quote');
+  var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }); }, { rootMargin: '0px 0px -8% 0px' });
+  els.forEach(function (el) {
+    var r = el.getBoundingClientRect(); if (r.top < innerHeight) return;
+    var i = Array.prototype.indexOf.call(el.parentNode.children, el) % 6;
+    el.style.setProperty('--rd', (i * 0.08) + 's'); el.classList.add('reveal'); io.observe(el);
+  });
+})();
+</script><script>
+// Видео с data-embed играет прямо на сайте: по клику вместо обложки появляется плеер
+document.querySelectorAll('.video[data-embed]').forEach(function (a) {
+  a.addEventListener('click', function (e) {
+    var th = a.querySelector('.thumb'); if (th.classList.contains('playing')) { e.preventDefault(); return; }
+    e.preventDefault();
+    var f = document.createElement('iframe'); f.src = a.dataset.embed; f.title = a.querySelector('strong').textContent;
+    f.allow = 'autoplay; encrypted-media; fullscreen; picture-in-picture; screen-wake-lock'; f.allowFullscreen = true;
+    th.innerHTML = ''; th.classList.add('playing'); th.appendChild(f);
+  });
+});
+</script>
+<script>
+// Снег копится сугробами на буквах названия и время от времени осыпается
+(function () {
+  var h1 = document.querySelector('.title-img'), img = h1 && h1.querySelector('img');
+  if (!img || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var cv = document.createElement('canvas'); cv.className = 'title-snow'; cv.setAttribute('aria-hidden', 'true');
+  h1.appendChild(cv);
+  var ctx = cv.getContext('2d'), OFF = 60, W, H, top, depth, cap, flakes = [], bits = [], dpr, ready = false;
+  function setup() {
+    W = img.clientWidth; H = img.clientHeight + OFF; if (!W) return;
+    dpr = Math.min(devicePixelRatio || 1, 2);
+    cv.style.left = img.offsetLeft + 'px'; cv.style.right = 'auto'; cv.style.width = W + 'px'; cv.style.height = H + 'px';
+    cv.width = W * dpr; cv.height = H * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    var o = document.createElement('canvas'); o.width = W; o.height = img.clientHeight;
+    var oc = o.getContext('2d'); oc.drawImage(img, 0, 0, W, o.height);
+    var d = oc.getImageData(0, 0, W, o.height).data, x, y;
+    top = new Float32Array(W); depth = new Float32Array(W); cap = new Float32Array(W);
+    for (x = 0; x < W; x++) { top[x] = -1; for (y = 0; y < o.height; y++) if (d[(y * W + x) * 4 + 3] > 140) { top[x] = y + OFF; break; } }
+    var mx = Math.max(5, W / 75);
+    for (x = 0; x < W; x++) {
+      if (top[x] < 0) continue;
+      var a = top[Math.max(0, x - 3)], b = top[Math.min(W - 1, x + 3)];
+      if (a < 0 || b < 0) { cap[x] = mx * .5; continue; }
+      var s = Math.abs(b - a) / 6; cap[x] = mx * Math.max(.15, 1 - s * .9);
+    }
+    // к краям площадки сугроб скругляется, как подушка
+    for (x = 0; x < W; x++) {
+      if (top[x] < 0) continue;
+      var l = x, r = x;
+      while (l > 0 && top[l - 1] >= 0 && Math.abs(top[l - 1] - top[l]) <= 3 && x - l < mx * 2) l--;
+      while (r < W - 1 && top[r + 1] >= 0 && Math.abs(top[r + 1] - top[r]) <= 3 && r - x < mx * 2) r++;
+      var e = Math.min(x - l, r - x) + 1, q = Math.min(1, e / (mx * 1.1));
+      cap[x] = Math.max(1.2, cap[x] * Math.sqrt(q * (2 - q)));
+    }
+    // неровная, «живая» поверхность снега
+    var n1 = Math.random() * 9, n2 = Math.random() * 9;
+    for (x = 0; x < W; x++) cap[x] *= .78 + .12 * Math.sin(x * .19 + n1) + .1 * Math.sin(x * .053 + n2);
+    ready = true;
+  }
+  function spawn() { flakes.push({ x: Math.random() * W, y: -4, r: .7 + Math.random() * 1.4, v: .3 + Math.random() * .35, p: Math.random() * 6.28 }); }
+  function add(x, r) {
+    // снег растекается по площадке: больше достаётся тем местам, где сугроб пока ниже своей «подушки»
+    for (var k = -12; k <= 12; k++) { var i = x + k; if (i < 0 || i >= W || top[i] < 0 || Math.abs(top[i] - top[x]) > 6) continue; var room = cap[i] - depth[i]; if (room > 0) depth[i] += Math.min(room, r * .22 * (.25 + room / cap[i])); }
+  }
+  function relax() {
+    // сугроб ложится подушкой: поверхность не круче соседней, края буквы скруглены
+    var g = 2.2;
+    function lim(x, n) {
+      var s = (n < 0 || n >= W || top[n] < 0 || Math.abs(top[n] - top[x]) > 6) ? top[x] : top[n] - depth[n];
+      if (depth[x] > top[x] - s + g) depth[x] = Math.max(0, top[x] - s + g);
+    }
+    for (var pass = 0; pass < 2; pass++) {
+      for (var x = 0; x < W; x++) if (top[x] >= 0) lim(x, x - 1);
+      for (x = W - 1; x >= 0; x--) if (top[x] >= 0) lim(x, x + 1);
+    }
+  }
+  function shed() {
+    // осыпаем сугроб то с одной, то с другой буквы: случайный пышный участок подальше от прошлого
+    var c = [], x;
+    for (x = 0; x < W; x++) if (top[x] >= 0 && cap[x] > 3 && depth[x] > cap[x] * .6 && Math.abs(x - lastShed) > W / 6) c.push(x);
+    if (!c.length) return;
+    var best = c[Math.floor(Math.random() * c.length)]; lastShed = best;
+    var l = best, r = best;
+    while (l > 0 && top[l - 1] >= 0 && depth[l - 1] > .5) l--;
+    while (r < W - 1 && top[r + 1] >= 0 && depth[r + 1] > .5) r++;
+    // снег не исчезает разом, а съезжает с буквы в одну сторону и сыплется комочками
+    var dir = Math.random() < .5 ? 1 : -1;
+    sliding.push({ l: l, r: r, dir: dir, pos: dir > 0 ? l : r });
+  }
+  function slide() {
+    for (var s = sliding.length - 1; s >= 0; s--) {
+      var sl = sliding[s];
+      for (var k = 0; k < 2; k++) {
+        var x = sl.pos;
+        if (x < sl.l || x > sl.r) { sliding.splice(s, 1); break; }
+        if (depth[x] > .4 && Math.random() < .7) bits.push({ x: x, y: top[x] - depth[x] / 2, r: .7 + Math.random() * depth[x] * .3, vx: sl.dir * (.2 + Math.random() * .5), vy: Math.random() * .3, a: 1 });
+        depth[x] = 0; sl.pos += sl.dir;
+      }
+    }
+  }
+  var t = 0, nextShed = 700, lastShed = -9999, sliding = [];
+  function frame() {
+    requestAnimationFrame(frame);
+    if (!ready) return;
+    t++;
+    if (t % 2 === 0) spawn();
+    slide();
+    if (t % 2 === 0) relax();
+    if (t > nextShed) { shed(); nextShed = t + 240 + Math.random() * 200; }
+    ctx.clearRect(0, 0, W, H);
+    // сугробы
+    ctx.fillStyle = '#fff'; ctx.shadowColor = 'rgba(50,80,130,.3)'; ctx.shadowBlur = 2; ctx.shadowOffsetY = 1;
+    ctx.beginPath();
+    var x, open = false;
+    for (x = 0; x < W; x++) {
+      if (top[x] < 0 || depth[x] < .3) { if (open) { ctx.closePath(); open = false; } continue; }
+      if (!open) { ctx.moveTo(x, top[x] + 1); open = true; ctx._s = x; }
+      ctx.lineTo(x, top[x] - depth[x]);
+      if (x + 1 >= W || top[x + 1] < 0 || depth[x + 1] < .3) { for (var j = x; j >= ctx._s; j--) ctx.lineTo(j, top[j] + 1.5); ctx.closePath(); open = false; }
+    }
+    ctx.fill(); ctx.shadowColor = 'transparent';
+    // снежинки
+    ctx.fillStyle = 'rgba(255,255,255,.95)';
+    for (var i = flakes.length - 1; i >= 0; i--) {
+      var f = flakes[i]; f.y += f.v; f.p += .03; f.x += Math.sin(f.p) * .25;
+      var xi = Math.round(f.x);
+      if (xi >= 0 && xi < W && top[xi] >= 0 && f.y >= top[xi] - depth[xi]) { add(xi, f.r); flakes.splice(i, 1); continue; }
+      if (f.y > H) { flakes.splice(i, 1); continue; }
+      ctx.beginPath(); ctx.arc(f.x, f.y, f.r, 0, 6.28); ctx.fill();
+    }
+    // осыпающийся снег
+    for (i = bits.length - 1; i >= 0; i--) {
+      var b = bits[i]; b.vy += .07; b.x += b.vx; b.y += b.vy; if (b.y > H - 30) b.a -= .04;
+      if (b.a <= 0 || b.y > H) { bits.splice(i, 1); continue; }
+      ctx.globalAlpha = b.a; ctx.beginPath(); ctx.arc(b.x, b.y, b.r, 0, 6.28); ctx.fill();
+    }
+    ctx.globalAlpha = 1;
+  }
+  function start() { setTimeout(function () { setup(); requestAnimationFrame(frame); }, 2300); }
+  if (img.complete) start(); else img.addEventListener('load', start);
+  var rt; addEventListener('resize', function () { clearTimeout(rt); rt = setTimeout(function () { ready = false; flakes = []; bits = []; sliding = []; setup(); }, 200); });
+})();
+</script>
+</body>
+</html>
