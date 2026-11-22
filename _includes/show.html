@@ -715,7 +715,6 @@ main.wrap h2, .date .d, .no-shows strong, .pr-name, .write-review strong, .egg-m
     document.querySelector('.no-shows').hidden = false;
     [].forEach.call(document.querySelectorAll('[data-hero-dates]'), function (hd) { hd.querySelector('b').textContent = 'Новые даты'; hd.querySelector('span').textContent = 'скоро появятся'; });
     [].forEach.call(document.querySelectorAll('[data-hero-place]'), function (el) { el.hidden = true; });
-    [].forEach.call(document.querySelectorAll('[data-hero-buy]'), function (buy) { buy.href = '#afisha'; buy.removeAttribute('target'); buy.innerHTML = '<span class="gift-fallback">Узнать о новых датах</span>'; });
   }
 
   // Заклинание появляется по словам
