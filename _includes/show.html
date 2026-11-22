@@ -477,11 +477,7 @@ main.wrap h2, .date .d, .no-shows strong, .pr-name, .write-review strong, .egg-m
     </div>
     <figure class="troupe"><img src="{{ d.hero.troupe | escape }}" width="1925" height="1553" alt="{{ d.hero.troupeAlt | escape }}"></figure>
     <div class="cta-row">
-      {% if d.hero.ticket == '#afisha' %}
-      <a class="gift-img" href="#afisha" data-hero-buy><span class="gift-fallback">Узнать о новых датах</span></a>
-      {% else %}
-      <a class="gift-img" href="{{ d.hero.ticket | escape }}" target="_blank" rel="noopener" data-hero-buy><img src="{{ d.hero.gift | escape }}" width="325" height="138" alt="{{ d.hero.giftAlt | escape }}"></a>
-      {% endif %}
+      <a class="gift-img" href="#afisha" data-hero-buy><img src="{{ d.hero.gift | escape }}" width="325" height="138" alt="Купить билеты — выбрать показ"></a>
       <a class="trailer" href="#video"><span class="medal" aria-hidden="true"><span class="medal-dots"></span><span class="play"></span></span><span>Смотреть<br>тизер</span></a>
     </div>
   </div>
