@@ -62,6 +62,15 @@
       "address": "Москва, Варшавское шоссе, д. 116",
       "ticket": "https://iframeab-pre12305.intickets.ru/seance/73604443/",
       "offSale": true
+    },
+    {
+      "day": "2027-01-03",
+      "time": "12:00",
+      "city": "Талдом",
+      "venue": "РДК, г. Талдом",
+      "address": "Московская область, г. Талдом, ул. Победы, д. 10",
+      "ticket": "https://iframeab-pre12305.intickets.ru/event/73604188",
+      "offSale": false
     }
   ]
 }
