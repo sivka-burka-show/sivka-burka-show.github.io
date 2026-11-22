@@ -1135,5 +1135,53 @@ document.querySelectorAll('.video[data-embed]').forEach(function (a) {
   var rt; addEventListener('resize', function () { clearTimeout(rt); rt = setTimeout(function () { ready = false; flakes = []; bits = []; sliding = []; setup(); }, 200); });
 })();
 </script>
+<script>
+(async function loadPublishedVideos() {
+  const gallery = document.querySelector('#video .videos');
+  if (!gallery) return;
+  const host = 'https://sivka-burka-panel-ovrd1979.msk1.amvera.tech';
+  const response = await fetch(host + '/public/videos', {credentials:'omit'});
+  if (!response.ok) return;
+  const {items} = await response.json();
+  if (!Array.isArray(items)) return;
+  const fragment = document.createDocumentFragment();
+  for (const item of items) {
+    const card = document.createElement(item.file ? 'div' : 'a');
+    card.className = 'video';
+    if (item.file && /^\/clips\/[a-f0-9-]+\.(mp4|webm|mov)$/.test(item.file)) {
+      const player = document.createElement('video');
+      player.controls = true;
+      player.playsInline = true;
+      player.preload = 'metadata';
+      player.style.width = '100%';
+      player.src = host + item.file;
+      card.append(player);
+    } else {
+      if (!/^https?:\/\//i.test(item.url || '')) continue;
+      card.href = item.url;
+      card.target = '_blank';
+      card.rel = 'noopener';
+      const thumb = document.createElement('div');
+      thumb.className = 'thumb';
+      if (/^\/img\/[\w.-]+$/.test(item.cover || '')) {
+        const cover = item.cover.startsWith('/img/editor-') ? host + '/public' + item.cover : item.cover;
+        thumb.style.setProperty('--img', 'url("' + cover + '")');
+      }
+      const label = document.createElement('span');
+      label.className = 'tag';
+      label.textContent = item.tag || 'Смотреть видео';
+      thumb.append(label);
+      card.append(thumb);
+    }
+    const title = document.createElement('strong');
+    title.textContent = item.title || 'Видео';
+    card.append(title);
+    fragment.append(card);
+  }
+  gallery.replaceChildren(fragment);
+  const teaser = document.querySelector('.trailer');
+  if (teaser) teaser.hidden = !gallery.children.length;
+})().catch(() => {});
+</script>
 </body>
 </html>
