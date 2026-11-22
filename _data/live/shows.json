@@ -1,6 +1,15 @@
 {
   "items": [
     {
+      "day": "2026-12-12",
+      "time": "12:00",
+      "city": "Посёлок Горки-10",
+      "venue": "Сельский дом культуры Горки-10",
+      "address": "посёлок Горки-10, 25А",
+      "ticket": "https://biletof.com/choose/?ra=19588&elem=0&var=1&frame=1&ysclid=mwsdyrragk422108474",
+      "offSale": false
+    },
+    {
       "day": "2026-12-29",
       "time": "12:00",
       "city": "Москва",
