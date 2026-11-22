@@ -3,16 +3,16 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="Театрализованное музыкальное представление «Сивка-бурка» по мотивам русской народной сказки. Московский государственный ансамбль «Русская душа» п/р народной артистки России Людмилы Николаевой. Спектакль для всей семьи, 0+.">
+<meta name="description" content="{{ d.hero.description | default: 'Театрализованное музыкальное представление «Сивка-бурка» по мотивам русской народной сказки. Московский государственный ансамбль «Русская душа» п/р народной артистки России Людмилы Николаевой. Спектакль для всей семьи, 0+.' | escape }}">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Сивка-бурка — ансамбль «Русская душа»">
-<meta property="og:description" content="Театрализованное музыкальное представление «Сивка-бурка» по мотивам русской народной сказки. Московский государственный ансамбль «Русская душа» п/р народной артистки России Людмилы Николаевой. Спектакль для всей семьи, 0+.">
+<meta property="og:description" content="{{ d.hero.description | default: 'Театрализованное музыкальное представление «Сивка-бурка» по мотивам русской народной сказки. Московский государственный ансамбль «Русская душа» п/р народной артистки России Людмилы Николаевой. Спектакль для всей семьи, 0+.' | escape }}">
 <meta property="og:url" content="https://sivka-burka-show.github.io/">
 <meta property="og:image" content="https://sivka-burka-show.github.io/IMG_7649.jpeg">
 <meta property="vk:image" content="https://sivka-burka-show.github.io/IMG_7649.jpeg">
 <meta name="twitter:card" content="summary_large_image">
 <style>img{max-width:100%}</style>
-<title>Сивка-бурка</title>
+<title>{{ d.hero.browserTitle | default: 'Сивка-бурка' | escape }}</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ruslan+Display&family=Yeseva+One&family=PT+Serif:ital,wght@0,400;0,700;1,400&family=PT+Sans+Narrow:wght@400;700&display=swap">
@@ -451,15 +451,15 @@ main.wrap h2, .date .d, .no-shows strong, .pr-name, .write-review strong, .egg-m
 .quote figcaption::before { content: "— "; color: #c9a14a; }
 @media (max-width: 900px) { .quotes { grid-template-columns: 1fr; max-width: 640px; margin: 0 auto; } }
 </style>
-</head>
+{% if d.hero.background and d.hero.background != empty %}<style>.hero::before{background-image:url('{{ d.hero.background | uri_escape | escape }}')}</style>{% endif %}</head>
 <body>
 <header class="site-head">
   <div class="wrap">
     <a class="logo" href="#top">
       <svg width="58" height="44" viewBox="0 0 58 44" aria-hidden="true" fill="none" stroke="#dcae4c" stroke-width="1.6"><path d="M4 16 L29 4 L54 16 Z"/><path d="M29 4 V1"/><circle cx="29" cy="11" r="2.2"/><path d="M6 16 H52 M6 19 H52"/><path d="M10 19 V37 M17 19 V37 M24 19 V37 M34 19 V37 M41 19 V37 M48 19 V37"/><path d="M27 37 V27 Q29 24 31 27 V37"/><path d="M3 37 H55 M1 41 H57"/></svg>
-      <span><small>Московский государственный ансамбль</small><b>РУССКАЯ ДУША</b></span>
+      <span><small>{{ d.hero.brandIntro | default: 'Московский государственный ансамбль' | escape }}</small><b>{{ d.hero.brand | default: 'РУССКАЯ ДУША' | escape }}</b></span>
     </a>
-    <span class="head-lead">Художественный руководитель<br>народная артистка России<br>Людмила Николаева</span>
+    <span class="head-lead">{% if d.hero.leader and d.hero.leader != empty %}{{ d.hero.leader | escape | newline_to_br }}{% else %}Художественный руководитель<br>народная артистка России<br>Людмила Николаева{% endif %}</span>
     <nav aria-label="Разделы">
       <a href="#about">О спектакле</a><a href="#afisha">Афиша</a><a href="#cast">Создатели</a><a href="#video">Видео</a><a href="#photo">Фото</a><a href="#reviews">Отзывы</a><a href="#contacts">Контакты</a>
     </nav>
@@ -493,13 +493,13 @@ main.wrap h2, .date .d, .no-shows strong, .pr-name, .write-review strong, .egg-m
       <div class="filter"><span class="f-label">Год</span><div class="chips" data-chips="year"></div></div>
       <div class="filter"><span class="f-label">Месяц</span><div class="chips chips-months" data-chips="month"></div></div>
     </div>
-    <div class="shows">{% for item in d.shows.items %}
+    <div class="shows">{% for item in d.shows.items %}{% unless item.offSale %}
 <div class="show" data-city="{{ item.city | escape }}" data-venue="{{ item.venue | escape }}" data-start="{{ item.day | date: '%Y-%m-%d' }}T{{ item.time | escape }}:00+03:00">
   <div class="date"><span class="d">{{ item.day | date: '%d' }}</span><span class="m" data-date-label></span></div>
   <div class="show-info"><strong>{{ item.time | escape }} · {{ item.venue | escape }}</strong><span>{{ item.address | escape }}</span></div>
   <a class="btn btn-red" href="{{ item.ticket | escape }}" target="_blank" rel="noopener">Билеты</a>
 </div>
-{% endfor %}
+{% endunless %}{% endfor %}
     </div>
     <div class="no-shows" hidden>
       <strong>Новые даты скоро появятся</strong>
@@ -578,7 +578,33 @@ main.wrap h2, .date .d, .no-shows strong, .pr-name, .write-review strong, .egg-m
       <div><h3>Соцсети</h3><p class="socials"><a href="{{ d.contacts.social0 | escape }}" target="_blank" rel="noopener" aria-label="YouTube" title="YouTube"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="5.5" width="20" height="13" rx="4" fill="currentColor"/><path d="M10 9.2v5.6l4.8-2.8z" fill="var(--soc-bg)"/></svg></a><a href="{{ d.contacts.social1 | escape }}" target="_blank" rel="noopener" aria-label="RUTUBE" title="RUTUBE"><svg viewBox="0 0 24 24" aria-hidden="true"><text x="11" y="17" text-anchor="middle" font-family="Arial, sans-serif" font-weight="700" font-size="15" fill="currentColor">R</text><circle cx="18" cy="6.5" r="2.2" fill="#e8344e"/></svg></a><a href="{{ d.contacts.social2 | escape }}" target="_blank" rel="noopener" aria-label="Дзен" title="Дзен"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 3c.25 4.9 4.1 8.75 9 9-4.9.25-8.75 4.1-9 9-.25-4.9-4.1-8.75-9-9 4.9-.25 8.75-4.1 9-9z"/></svg></a><a href="{{ d.contacts.social3 | escape }}" target="_blank" rel="noopener" aria-label="ВКонтакте" title="ВКонтакте"><svg viewBox="0 0 24 24" aria-hidden="true"><text x="12" y="16.2" text-anchor="middle" font-family="Arial, sans-serif" font-weight="700" font-size="11" fill="currentColor">VK</text></svg></a><a href="{{ d.contacts.social4 | escape }}" target="_blank" rel="noopener" aria-label="MAX" title="MAX"><svg viewBox="0 0 24 24" aria-hidden="true"><text x="12" y="15.6" text-anchor="middle" font-family="Arial, sans-serif" font-weight="700" font-size="8.4" letter-spacing=".2" fill="currentColor">MAX</text></svg></a><a href="{{ d.contacts.social5 | escape }}" target="_blank" rel="noopener" aria-label="Telegram" title="Telegram"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20.7 4.2 3.4 10.9c-1.2.5-1.1 1.6-.1 1.9l4.4 1.4 1.7 5.2c.2.6.4.8.8.8s.6-.2.9-.5l2.2-2.1 4.5 3.3c.8.5 1.4.2 1.6-.8l2.9-13.6c.3-1.2-.4-1.8-1.6-1.3zM9.6 14.4l7.9-7.2c.4-.3-.1-.5-.6-.2l-9 5.8"/></svg></a><a href="{{ d.contacts.social6 | escape }}" target="_blank" rel="noopener" aria-label="Instagram" title="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r=".6" fill="currentColor"/></svg></a></p></div>
     </div>
   </section>
+{% for item in d.design.sections %}{% if item.custom %}<section id="{{ item.id | escape }}"><div class="sec-head"><h2>{{ item.heading | escape }}</h2></div><p>{{ item.body | escape | newline_to_br }}</p>{% if item.photo and item.photo != empty %}<img src="{{ item.photo | escape }}" alt="{{ item.heading | escape }}" loading="lazy">{% endif %}{% if item.link and item.link != empty %}<p><a class="btn btn-red" href="{{ item.link | escape }}">{{ item.button | default: 'Подробнее' | escape }}</a></p>{% endif %}</section>{% endif %}{% endfor %}
 </main>
+<textarea hidden id="page-appearance">{{ d.design | jsonify | escape }}</textarea>
+<script>(() => {
+  const settings = JSON.parse(document.querySelector('#page-appearance').value || 'null');
+  if (!settings) return;
+  const nav = document.querySelector('.site-head nav');
+  const colors = /^#[0-9a-f]{6}$/i;
+  const fonts = {classic:'Georgia, serif',simple:'system-ui, sans-serif',play:'"Ruslan Display", Georgia, serif'};
+  for (const style of settings.sections || []) {
+    const el = document.getElementById(style.id);
+    if (!el || el.parentElement.tagName !== 'MAIN') continue;
+    el.parentElement.append(el);
+    let link = nav.querySelector('a[href="#'+style.id+'"]');
+    if(!link && style.custom){link=document.createElement('a');link.href='#'+style.id;link.textContent=style.menu||style.heading;}
+    el.hidden = style.visible === false;
+    if(link) { nav.append(link); link.hidden = el.hidden; if(style.menu) link.textContent=style.menu; }
+    const heading = el.querySelector('h2');
+    if(style.heading) heading.textContent = style.heading;
+    if(colors.test(style.ink)) heading.style.color=style.ink;
+    if(colors.test(style.background)) el.style.background=style.background;
+    if(fonts[style.font]) heading.style.fontFamily=fonts[style.font];
+    if(style.align === 'center') el.querySelector('.sec-head').style.justifyContent='center';
+    if(style.spacing === 'wide') el.style.paddingBlock='48px';
+  }
+})();
+</script>
 <audio class="music" src="img/music.mp3" loop preload="none"></audio>
 <script>
 (function () {
@@ -607,8 +633,8 @@ main.wrap h2, .date .d, .no-shows strong, .pr-name, .write-review strong, .egg-m
 
 <footer>
   <div class="wrap">
-    <span class="end">Тут и сказке конец</span>
-    <span>Организатор ГБУК г. Москвы «МКЦ НТ «Русская душа» п/р Л. Николаевой» · ОГРН 1047796946515</span>
+    <span class="end">{{ d.hero.closing | default: 'Тут и сказке конец' | escape }}</span>
+    <span>{{ d.hero.organizer | default: 'Организатор ГБУК г. Москвы «МКЦ НТ «Русская душа» п/р Л. Николаевой» · ОГРН 1047796946515' | escape }}</span>
   </div>
 </footer>
 
@@ -689,7 +715,7 @@ main.wrap h2, .date .d, .no-shows strong, .pr-name, .write-review strong, .egg-m
     document.querySelector('.no-shows').hidden = false;
     [].forEach.call(document.querySelectorAll('[data-hero-dates]'), function (hd) { hd.querySelector('b').textContent = 'Новые даты'; hd.querySelector('span').textContent = 'скоро появятся'; });
     [].forEach.call(document.querySelectorAll('[data-hero-place]'), function (el) { el.hidden = true; });
-    [].forEach.call(document.querySelectorAll('[data-hero-buy]'), function (buy) { buy.innerHTML = '<span class="gift-fallback">Узнать о новых датах</span>'; });
+    [].forEach.call(document.querySelectorAll('[data-hero-buy]'), function (buy) { buy.href = '#afisha'; buy.removeAttribute('target'); buy.innerHTML = '<span class="gift-fallback">Узнать о новых датах</span>'; });
   }
 
   // Заклинание появляется по словам
