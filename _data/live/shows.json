@@ -1,0 +1,52 @@
+{
+  "items": [
+    {
+      "day": "2026-12-29",
+      "time": "12:00",
+      "city": "Москва",
+      "venue": "Концертный зал «ЮгАрт»",
+      "address": "Москва, Варшавское шоссе, д. 116",
+      "ticket": "https://iframeab-pre12305.intickets.ru/seance/73604422/"
+    },
+    {
+      "day": "2026-12-29",
+      "time": "15:00",
+      "city": "Москва",
+      "venue": "Концертный зал «ЮгАрт»",
+      "address": "Москва, Варшавское шоссе, д. 116",
+      "ticket": "https://iframeab-pre12305.intickets.ru/seance/73604424/"
+    },
+    {
+      "day": "2026-12-29",
+      "time": "18:00",
+      "city": "Москва",
+      "venue": "Концертный зал «ЮгАрт»",
+      "address": "Москва, Варшавское шоссе, д. 116",
+      "ticket": "https://iframeab-pre12305.intickets.ru/seance/73604431/"
+    },
+    {
+      "day": "2026-12-30",
+      "time": "12:00",
+      "city": "Москва",
+      "venue": "Концертный зал «ЮгАрт»",
+      "address": "Москва, Варшавское шоссе, д. 116",
+      "ticket": "https://iframeab-pre12305.intickets.ru/seance/73604435/"
+    },
+    {
+      "day": "2026-12-30",
+      "time": "15:00",
+      "city": "Москва",
+      "venue": "Концертный зал «ЮгАрт»",
+      "address": "Москва, Варшавское шоссе, д. 116",
+      "ticket": "https://iframeab-pre12305.intickets.ru/seance/73604441/"
+    },
+    {
+      "day": "2026-12-30",
+      "time": "18:00",
+      "city": "Москва",
+      "venue": "Концертный зал «ЮгАрт»",
+      "address": "Москва, Варшавское шоссе, д. 116",
+      "ticket": "https://iframeab-pre12305.intickets.ru/seance/73604443/"
+    }
+  ]
+}

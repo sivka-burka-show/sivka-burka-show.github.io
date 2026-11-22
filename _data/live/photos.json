@@ -1,0 +1,54 @@
+{
+  "items": [
+    {
+      "photo": "/img/photo-stage.jpg",
+      "caption": "Все герои сказки на сцене у царского дворца",
+      "wide": true
+    },
+    {
+      "photo": "/img/photo-tsaritsa.jpg",
+      "caption": "Царица в кокошнике и расписном сарафане",
+      "wide": false
+    },
+    {
+      "photo": "/img/photo-horse.jpg",
+      "caption": "Сивка-бурка скачет под луной",
+      "wide": false
+    },
+    {
+      "photo": "/img/photo-goat.jpg",
+      "caption": "Елена Прекрасная и Коза с гармонью",
+      "wide": false
+    },
+    {
+      "photo": "/img/photo-brothers3.jpg",
+      "caption": "Три брата",
+      "wide": true
+    },
+    {
+      "photo": "/img/photo-house.jpg",
+      "caption": "Иван и Елена Прекрасная у избы",
+      "wide": false
+    },
+    {
+      "photo": "/img/photo-brothers2.jpg",
+      "caption": "Братья Дмитрий и Алексей",
+      "wide": false
+    },
+    {
+      "photo": "/img/photo-night.jpg",
+      "caption": "Иван и Старик-отец ночью в поле",
+      "wide": false
+    },
+    {
+      "photo": "/img/photo-ivan-moon.jpg",
+      "caption": "Иван под луной в цветущем поле",
+      "wide": false
+    },
+    {
+      "photo": "/img/photo-elena-red.jpg",
+      "caption": "Елена Прекрасная в красном платье с волшебным покрывалом",
+      "wide": false
+    }
+  ]
+}

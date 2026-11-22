@@ -1,0 +1,67 @@
+{
+  "items": [
+    {
+      "name": "Людмила Николаева",
+      "role": "Царица",
+      "photo": "/img/nikolaeva.jpg",
+      "note": "народная артистка России",
+      "visible": true
+    },
+    {
+      "name": "Сергей Букреев",
+      "role": "Старик-отец, Коза",
+      "photo": "/img/bukreev.jpg",
+      "note": "",
+      "visible": true
+    },
+    {
+      "name": "Андрей Логинов",
+      "role": "Иван-дурак",
+      "photo": "/img/loginov.jpg",
+      "note": "",
+      "visible": true
+    },
+    {
+      "name": "Анна Бизяева",
+      "role": "Елена Прекрасная",
+      "photo": "/img/bizyaeva.jpg",
+      "note": "",
+      "visible": true
+    },
+    {
+      "name": "Анастасия Тихонова",
+      "role": "Сивка-бурка (Сивка)",
+      "photo": "/img/tikhonova.jpg",
+      "note": "",
+      "visible": true
+    },
+    {
+      "name": "Евгения Стародубова",
+      "role": "Сивка-бурка (Бурка)",
+      "photo": "/img/starodubova.jpg",
+      "note": "",
+      "visible": true
+    },
+    {
+      "name": "Марат Кандаулов",
+      "role": "Брат Дмитрий",
+      "photo": "/img/kandaulov.jpg",
+      "note": "",
+      "visible": true
+    },
+    {
+      "name": "Ян Ярмиш",
+      "role": "Брат Алексей",
+      "photo": "/img/yarmish.jpg",
+      "note": "",
+      "visible": true
+    },
+    {
+      "name": "Василиса Бирюкова",
+      "role": "Горничная, Палач",
+      "photo": "/img/biryukova.jpg",
+      "note": "",
+      "visible": true
+    }
+  ]
+}

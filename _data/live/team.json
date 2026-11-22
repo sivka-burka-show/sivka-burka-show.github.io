@@ -1,0 +1,60 @@
+{
+  "items": [
+    {
+      "name": "Людмила Николаева",
+      "role": "Художественный руководитель, автор музыки песен",
+      "photo": "/img/nikolaeva.jpg",
+      "note": "народная артистка России",
+      "visible": true
+    },
+    {
+      "name": "Дамир Бахтиев",
+      "role": "Режиссёр-постановщик",
+      "photo": "/img/bakhtiev.jpg",
+      "note": "",
+      "visible": true
+    },
+    {
+      "name": "Сергей Букреев",
+      "role": "Главный балетмейстер-постановщик",
+      "photo": "/img/bukreev.jpg",
+      "note": "",
+      "visible": true
+    },
+    {
+      "name": "Анастасия Данилова-Кухно",
+      "role": "Художник по костюмам",
+      "photo": "/img/kukhno.jpg",
+      "note": "",
+      "visible": true
+    },
+    {
+      "name": "Михаил Игнатов",
+      "role": "Саунд-продюсер",
+      "photo": "/img/ignatov.jpg",
+      "note": "",
+      "visible": true
+    },
+    {
+      "name": "Игорь Клочков",
+      "role": "Звукорежиссёр",
+      "photo": "/img/klochkov.jpg",
+      "note": "",
+      "visible": true
+    },
+    {
+      "name": "Мария Логинова",
+      "role": "Главный администратор",
+      "photo": "/img/loginova.jpg",
+      "note": "",
+      "visible": true
+    },
+    {
+      "name": "Ольга Вавилина",
+      "role": "Продюсер проекта, автор текстов песен",
+      "photo": "/img/vavilina.jpg",
+      "note": "",
+      "visible": true
+    }
+  ]
+}

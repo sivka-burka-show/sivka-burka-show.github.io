@@ -1,0 +1,32 @@
+name: Опубликовать сайт
+on:
+  workflow_dispatch:
+    inputs:
+      payload:
+        description: Pages CMS
+        type: string
+        required: true
+permissions:
+  contents: write
+  pages: write
+concurrency:
+  group: publish-content
+  cancel-in-progress: false
+jobs:
+  publish:
+    if: github.ref == 'refs/heads/main' && (github.actor == 'ovrd1979' || (github.actor == 'pages-cms[bot]' && fromJSON(inputs.payload).triggeredBy.githubUsername == 'ovrd1979'))
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Перенести сохранённые разделы в опубликованную версию
+        run: |
+          cp _data/draft/*.json _data/live/
+          git add _data/live/
+          if ! git diff --cached --quiet; then
+            git -c user.name='Редактор сайта' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -m 'Опубликовать изменения сайта'
+            git push origin HEAD:main
+          fi
+      - name: Пересобрать GitHub Pages
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api --method POST "repos/${GITHUB_REPOSITORY}/pages/builds"

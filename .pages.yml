@@ -1,0 +1,285 @@
+media:
+  input: img
+  output: /img
+  rename: random
+  extensions:
+  - jpg
+  - jpeg
+  - png
+  - webp
+  - avif
+content:
+- name: hero
+  label: Главный экран
+  type: file
+  path: _data/draft/hero.json
+  format: json
+  fields:
+  - name: title
+    label: Название спектакля
+    type: image
+  - name: titleAlt
+    label: Описание изображения — Название спектакля
+    type: string
+  - name: subtitle
+    label: Подзаголовок
+    type: image
+  - name: subtitleAlt
+    label: Описание изображения — Подзаголовок
+    type: string
+  - name: troupe
+    label: Фотография труппы
+    type: image
+  - name: troupeAlt
+    label: Описание изображения — Фотография труппы
+    type: string
+  - name: gift
+    label: Кнопка покупки
+    type: image
+  - name: giftAlt
+    label: Описание изображения — Кнопка покупки
+    type: string
+  - name: ticket
+    label: Ссылка на продажу билетов — главная кнопка
+    type: string
+    required: true
+    pattern: &id001
+      regex: ^https://
+      message: Введите ссылку с https://
+  - name: promo
+    label: Промокод золотого яйца
+    type: string
+- name: shows
+  label: Афиша и билеты
+  type: file
+  path: _data/draft/shows.json
+  format: json
+  fields:
+  - name: items
+    label: Показы
+    type: object
+    list: true
+    fields:
+    - name: day
+      label: Дата
+      type: date
+      required: true
+      options:
+        format: yyyy-MM-dd
+        time: false
+    - name: time
+      label: Время по Москве, ЧЧ:ММ
+      type: string
+      required: true
+      pattern:
+        regex: ^([01][0-9]|2[0-3]):[0-5][0-9]$
+        message: Например, 18:30
+    - name: city
+      label: Город
+      type: string
+    - name: venue
+      label: Площадка
+      type: string
+    - name: address
+      label: Адрес
+      type: string
+    - name: ticket
+      label: Ссылка на продажу билетов на этот сеанс
+      type: string
+      required: true
+      pattern: *id001
+- name: about
+  label: О спектакле
+  type: file
+  path: _data/draft/about.json
+  format: json
+  fields:
+  - name: intro
+    label: Текст о спектакле
+    type: text
+    list: true
+  - name: lead
+    label: Об интерактивной программе
+    type: text
+  - name: hint
+    label: Подсказка
+    type: text
+  - name: features
+    label: Особенности спектакля
+    type: object
+    list: true
+    fields:
+    - name: title
+      label: Название
+      type: string
+    - name: description
+      label: Описание
+      type: text
+- name: cast
+  label: В ролях
+  type: file
+  path: _data/draft/cast.json
+  format: json
+  fields:
+  - name: items
+    label: Карточки
+    type: object
+    list: true
+    fields:
+    - name: name
+      label: Имя и фамилия
+      type: string
+      required: true
+    - name: role
+      label: Роль или должность
+      type: string
+    - name: photo
+      label: Портрет артиста
+      type: image
+    - name: note
+      label: Звание
+      type: string
+    - name: visible
+      label: Показывать на сайте
+      type: boolean
+      default: true
+- name: team
+  label: Создатели спектакля
+  type: file
+  path: _data/draft/team.json
+  format: json
+  fields:
+  - name: items
+    label: Карточки
+    type: object
+    list: true
+    fields:
+    - name: name
+      label: Имя и фамилия
+      type: string
+      required: true
+    - name: role
+      label: Роль или должность
+      type: string
+    - name: photo
+      label: Портрет артиста
+      type: image
+    - name: note
+      label: Звание
+      type: string
+    - name: visible
+      label: Показывать на сайте
+      type: boolean
+      default: true
+- name: photos
+  label: Фотографии
+  type: file
+  path: _data/draft/photos.json
+  format: json
+  fields:
+  - name: items
+    label: Фотогалерея
+    type: object
+    list: true
+    fields:
+    - name: photo
+      label: Фотография
+      type: image
+    - name: caption
+      label: Описание
+      type: string
+    - name: wide
+      label: Широкий кадр
+      type: boolean
+- name: videos
+  label: Видео
+  type: file
+  path: _data/draft/videos.json
+  format: json
+  fields:
+  - name: items
+    label: Видеозаписи
+    type: object
+    list: true
+    fields:
+    - name: title
+      label: Название
+      type: string
+    - name: url
+      label: Ссылка на видео
+      type: string
+    - name: embed
+      label: Ссылка для встраивания (по желанию)
+      type: string
+    - name: cover
+      label: Обложка
+      type: image
+    - name: tag
+      label: Подпись
+      type: string
+- name: reviews
+  label: Отзывы
+  type: file
+  path: _data/draft/reviews.json
+  format: json
+  fields:
+  - name: items
+    label: Отзывы зрителей
+    type: object
+    list: true
+    fields:
+    - name: author
+      label: Имя
+      type: string
+    - name: paragraphs
+      label: Абзацы отзыва
+      type: text
+      list: true
+  - name: link
+    label: Ссылка «Оставить отзыв»
+    type: string
+- name: contacts
+  label: Контакты
+  type: file
+  path: _data/draft/contacts.json
+  format: json
+  fields:
+  - name: phone
+    label: Телефон
+    type: string
+  - name: email
+    label: Электронная почта
+    type: string
+  - name: address
+    label: Юридический адрес
+    type: string
+  - name: social0
+    label: YouTube
+    type: string
+  - name: social1
+    label: RUTUBE
+    type: string
+  - name: social2
+    label: Дзен
+    type: string
+  - name: social3
+    label: ВКонтакте
+    type: string
+  - name: social4
+    label: MAX
+    type: string
+  - name: social5
+    label: Telegram
+    type: string
+  - name: social6
+    label: Instagram
+    type: string
+actions:
+- name: publish
+  label: Опубликовать на сайте
+  workflow: publish.yml
+  ref: main
+  confirm:
+    title: Опубликовать изменения?
+    message: Сохранённые разделы появятся на сайте для зрителей.
+    button: Опубликовать
