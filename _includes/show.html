@@ -1,9 +1,10 @@
 <!doctype html>
 <html lang="ru">
 <head>
+{% if page.url contains 'preview' %}<meta name="robots" content="noindex,follow">{% else %}<link rel="canonical" href="https://sivka-burka-show.github.io/">{% endif %}
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="{{ d.hero.description | default: 'Театрализованное музыкальное представление «Сивка-бурка» по мотивам русской народной сказки. Московский государственный ансамбль «Русская душа» п/р народной артистки России Людмилы Николаевой. Спектакль для всей семьи, 0+.' | escape }}">
+<meta name="description" content="{{ d.hero.description | default: 'В «Сивке-Бурке» оживают дымковские игрушки. Дети ищут золотое яйцо в одном из белых шаров, а под финальную песню героев начинается детская дискотека.' | escape }}">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Сивка-бурка — ансамбль «Русская душа»">
 <meta property="og:description" content="{{ d.hero.description | default: 'Театрализованное музыкальное представление «Сивка-бурка» по мотивам русской народной сказки. Московский государственный ансамбль «Русская душа» п/р народной артистки России Людмилы Николаевой. Спектакль для всей семьи, 0+.' | escape }}">
@@ -14,7 +15,7 @@
 <style>img{max-width:100%}html:not(.promo-active) :is(.egg-call-hint,.egg-find,.egg-ball,.egg-feature){display:none}
 .egg-card{max-height:90vh;overflow:auto}.promo-shows{display:grid;gap:8px}.promo-shows a{white-space:normal}
 </style>
-<title>{{ d.hero.browserTitle | default: 'Сивка-бурка' | escape }}</title>
+<title>{{ d.hero.browserTitle | default: 'Сивка-Бурка — семейный музыкальный спектакль | Афиша и билеты' | escape }}</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ruslan+Display&family=Yeseva+One&family=PT+Serif:ital,wght@0,400;0,700;1,400&family=PT+Sans+Narrow:wght@400;700&display=swap">
@@ -497,7 +498,7 @@ main.wrap h2, .date .d, .no-shows strong, .pr-name, .write-review strong, .egg-m
     </div>
     <div class="shows">{% for item in d.shows.items %}{% unless item.offSale %}
 <div class="show" data-city="{{ item.city | escape }}" data-venue="{{ item.venue | escape }}" data-start="{{ item.day | date: '%Y-%m-%d' }}T{{ item.time | escape }}:00+03:00">
-  <div class="date"><span class="d">{{ item.day | date: '%d' }}</span><span class="m" data-date-label></span></div>
+  <div class="date" aria-label="{{ item.day | date: '%d.%m.%Y' }}"><span class="d">{{ item.day | date: '%d' }}</span><span class="m" data-date-label>{% assign months = 'января февраля марта апреля мая июня июля августа сентября октября ноября декабря' | split: ' ' %}{% assign month_index = item.day | date: '%m' | minus: 1 %}{{ months[month_index] }} {{ item.day | date: '%Y' }}</span></div>
   <div class="show-info"><strong>{{ item.time | escape }} · {{ item.venue | escape }}</strong><span>{{ item.address | escape }}</span></div>
   <a class="btn btn-red" href="{{ item.ticket | escape }}" target="_blank" rel="noopener">Билеты</a>
 </div>
@@ -644,9 +645,14 @@ main.wrap h2, .date .d, .no-shows strong, .pr-name, .write-review strong, .egg-m
 (function () {
   // Афиша: прошедшие сеансы скрываются сами; если показов не осталось, вместо списка сообщение
   var upcoming = [];
+  var selectedCity = new URLSearchParams(location.search).get('city');
+  var heading = document.querySelector('#afisha h2');
+  var originalHeading = heading.textContent;
   function readRows() {
     var now = Date.now();
     var rows = [].slice.call(document.querySelectorAll('.show[data-start]'));
+    var cityFound = selectedCity && rows.some(function (row) { return row.dataset.city === selectedCity; });
+    heading.textContent = cityFound ? 'Афиша · ' + selectedCity : originalHeading;
     rows.forEach(function (row) {
       var day = new Date(row.dataset.start);
       var fmt = function (options) { return new Intl.DateTimeFormat('ru-RU', Object.assign({timeZone:'Europe/Moscow'}, options)); };
@@ -655,8 +661,8 @@ main.wrap h2, .date .d, .no-shows strong, .pr-name, .write-review strong, .egg-m
     });
     upcoming = rows.filter(function (r) {
       var past = new Date(r.getAttribute('data-start')).getTime() + 30 * 60000 < now;
-      r.hidden = past;
-      return !past;
+      r.hidden = past || (cityFound && r.dataset.city !== selectedCity);
+      return !r.hidden;
     });
   }
   readRows();

@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://sivka-burka-show.github.io/sitemap.xml
