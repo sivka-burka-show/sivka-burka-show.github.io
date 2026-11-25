@@ -4,7 +4,7 @@
 {% if page.url contains 'preview' %}<meta name="robots" content="noindex,follow">{% else %}<link rel="canonical" href="https://sivka-burka-show.github.io/">{% endif %}
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="{{ d.hero.description | default: 'Театрализованное музыкальное представление «Сивка-бурка» по мотивам русской народной сказки. Московский государственный ансамбль «Русская душа» п/р народной артистки России Людмилы Николаевой. Спектакль для всей семьи, 0+.' | escape }}">
+<meta name="description" content="{{ d.hero.description | default: 'На сцене оживают дымковские игрушки. Приходите всей семьёй на музыкальную сказку «Сивка-Бурка» ансамбля «Русская душа». Выберите город, дату и билеты.' | escape }}">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Сивка-бурка — ансамбль «Русская душа»">
 <meta property="og:description" content="{{ d.hero.description | default: 'Театрализованное музыкальное представление «Сивка-бурка» по мотивам русской народной сказки. Московский государственный ансамбль «Русская душа» п/р народной артистки России Людмилы Николаевой. Спектакль для всей семьи, 0+.' | escape }}">
@@ -15,7 +15,7 @@
 <style>img{max-width:100%}html:not(.promo-active) :is(.egg-call-hint,.egg-find,.egg-ball,.egg-feature){display:none}
 .egg-card{max-height:90vh;overflow:auto}.promo-shows{display:grid;gap:8px}.promo-shows a{white-space:normal}
 </style>
-<title>{{ d.hero.browserTitle | default: 'Сивка-Бурка — семейный музыкальный спектакль ансамбля «Русская душа» | Афиша и билеты' | escape }}</title>
+<title>{{ d.hero.browserTitle | default: 'Сивка-Бурка — семейный музыкальный спектакль | Афиша и билеты' | escape }}</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ruslan+Display&family=Yeseva+One&family=PT+Serif:ital,wght@0,400;0,700;1,400&family=PT+Sans+Narrow:wght@400;700&display=swap">
@@ -644,27 +644,28 @@ main.wrap h2, .date .d, .no-shows strong, .pr-name, .write-review strong, .egg-m
 <script>
 (function () {
   // Афиша: прошедшие сеансы скрываются сами; если показов не осталось, вместо списка сообщение
-  var now = Date.now();
-  var rows = [].slice.call(document.querySelectorAll('.show[data-start]'));
-  rows.forEach(function (row) {
-    var day = new Date(row.dataset.start);
-    var fmt = function (options) { return new Intl.DateTimeFormat('ru-RU', Object.assign({timeZone:'Europe/Moscow'}, options)); };
-    var month = fmt({day:'numeric', month:'long'}).formatToParts(day).find(function (p) { return p.type === 'month'; });
-    row.querySelector('[data-date-label]').textContent = month.value + ', ' + fmt({weekday:'short'}).format(day);
-  });
+  var upcoming = [];
   var selectedCity = new URLSearchParams(location.search).get('city');
-  if (selectedCity && rows.some(function (row) { return row.dataset.city === selectedCity; })) {
-    var heading = document.querySelector('#afisha h2');
-    heading.textContent = 'Афиша · ' + selectedCity;
-    rows.filter(function (row) { return row.dataset.city !== selectedCity; })
-      .forEach(function (row) { row.hidden = true; });
-    rows = rows.filter(function (row) { return row.dataset.city === selectedCity; });
+  var heading = document.querySelector('#afisha h2');
+  var originalHeading = heading.textContent;
+  function readRows() {
+    var now = Date.now();
+    var rows = [].slice.call(document.querySelectorAll('.show[data-start]'));
+    var cityFound = selectedCity && rows.some(function (row) { return row.dataset.city === selectedCity; });
+    heading.textContent = cityFound ? 'Афиша · ' + selectedCity : originalHeading;
+    rows.forEach(function (row) {
+      var day = new Date(row.dataset.start);
+      var fmt = function (options) { return new Intl.DateTimeFormat('ru-RU', Object.assign({timeZone:'Europe/Moscow'}, options)); };
+      var month = fmt({day:'numeric', month:'long'}).formatToParts(day).find(function (p) { return p.type === 'month'; });
+      row.querySelector('[data-date-label]').textContent = month.value + ', ' + fmt({weekday:'short'}).format(day);
+    });
+    upcoming = rows.filter(function (r) {
+      var past = new Date(r.getAttribute('data-start')).getTime() + 30 * 60000 < now;
+      r.hidden = past || (cityFound && r.dataset.city !== selectedCity);
+      return !r.hidden;
+    });
   }
-  var upcoming = rows.filter(function (r) {
-    var past = new Date(r.getAttribute('data-start')).getTime() + 30 * 60000 < now;
-    r.hidden = past;
-    return !past;
-  });
+  readRows();
 
   // Выбор года, месяца и места: город + зал
   var MONTHS = ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'];
@@ -727,6 +728,38 @@ main.wrap h2, .date .d, .no-shows strong, .pr-name, .write-review strong, .egg-m
     [].forEach.call(document.querySelectorAll('[data-hero-dates]'), function (hd) { hd.querySelector('b').textContent = 'Новые даты'; hd.querySelector('span').textContent = 'скоро появятся'; });
     [].forEach.call(document.querySelectorAll('[data-hero-place]'), function (el) { el.hidden = true; });
   }
+
+  {% if page.url == '/' or page.url == '/index.html' %}
+  async function refreshShows() {
+    const response = await fetch('https://sivka-burka-panel-ovrd1979.msk1.amvera.tech/public/shows', {
+      cache: 'no-store', credentials: 'omit', signal: AbortSignal.timeout(8000)
+    });
+    if (!response.ok) return;
+    const {items} = await response.json();
+    if (!Array.isArray(items)) return;
+    const cards = items.map(item => {
+      const start = item.day + 'T' + item.time + ':00+03:00';
+      if (!Number.isFinite(Date.parse(start)) || !/^https?:\/\//i.test(item.ticket)) throw Error('Invalid show');
+      const row = document.createElement('div');
+      row.className = 'show';
+      row.dataset.city = item.city;
+      row.dataset.venue = item.venue;
+      row.dataset.start = start;
+      row.innerHTML = '<div class="date"><span class="d"></span><span class="m" data-date-label></span></div>' +
+        '<div class="show-info"><strong></strong><span></span></div><a class="btn btn-red" target="_blank" rel="noopener">Билеты</a>';
+      row.querySelector('.d').textContent = item.day.slice(-2);
+      row.querySelector('strong').textContent = item.time + ' · ' + item.venue;
+      row.querySelector('.show-info span').textContent = item.address || '';
+      row.querySelector('a').href = item.ticket;
+      return row;
+    });
+    document.querySelector('.shows').replaceChildren(...cards);
+    readRows();
+    document.querySelector('.filters').hidden = !upcoming.length;
+    render();
+  }
+  window.publishedShowsReady = refreshShows().catch(() => {});
+  {% endif %}
 
   // Заклинание появляется по словам
   var spell = document.querySelector('.spell');
@@ -945,6 +978,7 @@ main.wrap h2, .date .d, .no-shows strong, .pr-name, .write-review strong, .egg-m
   let promo;try{const response=await fetch('https://sivka-burka-panel-ovrd1979.msk1.amvera.tech/public/promo',{cache:'no-store'});
     if(!response.ok)return;promo=await response.json();}catch{return}
   if(!promo?.items?.length)return;
+  await window.publishedShowsReady;
   const eligible = Array.from(document.querySelectorAll('.shows .show')).filter(row => {
     const start = row.dataset.start;
     const ticket = row.querySelector('a[href]')?.getAttribute('href');
