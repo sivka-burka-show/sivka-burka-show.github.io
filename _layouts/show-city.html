@@ -1,50 +1,12 @@
-{% assign show_list = site.data.published_schedule.items | where: "city", page.city | where: "day", page.day | where: "venue", page.venue | sort: "time" %}
-{% if page.time %}{% assign show_list = show_list | where: "time", page.time %}{% endif %}
-{% assign available = "" | split: "," %}{% for show in show_list %}{% unless show.offSale or show.ticket == blank %}{% assign available = available | push: show %}{% endunless %}{% endfor %}
-{% assign times = available | map: "time" | join: " и " %}
-{% assign day_ends = page.day | append: 'T00:00:00+03:00' | date: '%s' | plus: 86400 %}
-{% assign built_at = site.time | date: '%s' | plus: 0 %}
-{% assign archived = false %}{% if built_at >= day_ends %}{% assign archived = true %}{% endif %}
 <!doctype html>
-<html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-{% if available == empty and archived == false %}<meta name="robots" content="noindex,follow">{% endif %}
-<link rel="canonical" href="https://sivka-burka-show.github.io{{ page.url }}">
-<title>Сивка-Бурка {{ page.location }} — {{ page.date_label }}{% if available != empty %}, {{ times }}{% endif %} · {% if archived %}Архив афиши{% else %}Афиша и билеты{% endif %}</title>
-<meta name="description" content="Музыкальный спектакль «Сивка-Бурка» {{ page.location }}. {{ page.date_label }}{% if available != empty %} в {{ times }}{% endif %}. {{ page.display_venue | escape }}. {% if archived %}Архив афиши.{% else %}Афиша и билеты.{% endif %}">
-<style>
-*{box-sizing:border-box}body{margin:0;background:#fbf3e5 url("/pushkino/background.webp") center center/cover;min-height:100svh;display:grid;place-items:center}
-main{width:min(100%,760px);min-height:100svh;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:clamp(20px,5vw,44px) 16px;gap:clamp(14px,3vh,28px)}
-h1{margin:0;width:min(90%,535px)}h1 img{width:100%;display:block}.cast{display:block;width:min(100%,650px);max-height:61svh;object-fit:contain}
-a{font:700 19px/1.25 system-ui,sans-serif;background:#842446;color:white;text-decoration:none;padding:15px 38px;border-radius:9px}a:focus-visible{outline:3px solid #163d60;outline-offset:4px}
-main{gap:clamp(12px,2vh,22px)}.cast{max-height:50svh}.booking{display:grid;justify-items:center;gap:14px;width:100%}.show{margin:0;text-align:center;color:#233b5e;font:500 16px/1.45 system-ui,sans-serif;background:#fff8edeb;padding:10px 20px;border-radius:12px}.show time,.show strong{display:block;font:700 clamp(18px,3.8vw,23px)/1.35 Georgia,serif}.show time{color:#762341;margin-bottom:3px}.show span{display:block;margin-top:3px}.tickets{display:flex;justify-content:center;flex-wrap:wrap;gap:8px}.tickets a{display:block}.tickets a:not(:only-child){font-size:16px;padding:12px 14px}[hidden]{display:none!important}</style></head><body><main>
-<h1><img src="/pushkino/title.webp" alt="Сивка-Бурка"></h1>
-<img class="cast" src="/pushkino/cast.webp" alt="Артисты спектакля «Сивка-Бурка»">
-<div class="booking" id="current-booking"{% if archived %} hidden{% endif %}>{% unless archived %}{% if available != empty %}
-<div class="tickets">{% for show in available %}<a href="{{ site.data.ticket_links[show.ticket] | default: show.ticket | escape }}">{% if available.size > 1 %}Билеты на {{ show.time }}{% else %}Купить билет{% endif %}</a>{% endfor %}</div>
-<p class="show"><time datetime="{{ page.day }}">{{ page.date_label }} · {{ times }}</time><strong>{{ page.display_venue | escape }}</strong><span>{% if available.first.address == page.source_address %}{{ page.display_address | escape }}{% else %}{{ available.first.address | escape }}{% endif %}</span></p>
-{% else %}<a href="/#afisha">Посмотреть актуальную афишу</a>{% endif %}{% endunless %}</div>
-<div class="booking" id="past-show"{% unless archived %} hidden{% endunless %}>
-  <p class="show"><strong>Дата этого показа прошла</strong><time datetime="{{ page.day }}">{{ page.date_label }}</time><span>{{ page.display_venue | escape }} · {{ page.display_address | escape }}</span></p>
-  <a href="/#afisha">Ближайшие показы</a>
-  <a href="/#priglasit">Пригласить спектакль в свой город</a>
-</div>
-</main>
-<script>
-(() => {
-  const cutoff = {{ day_ends }} * 1000;
-  let timer;
-  function checkDate() {
-    clearTimeout(timer);
-    const left = cutoff - Date.now();
-    if (left > 0) {
-      timer = setTimeout(checkDate, Math.min(left, 86400000));
-      return;
-    }
-    document.getElementById('current-booking').replaceChildren();
-    document.getElementById('current-booking').hidden = true;
-    document.getElementById('past-show').hidden = false;
-  }
-  checkDate();
-  window.addEventListener('pageshow', checkDate);
-})();
-</script></body></html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="refresh" content="0; url=https://sivka-burka-show.github.io/">
+  <link rel="canonical" href="https://sivka-burka-show.github.io/">
+  <title>Сивка-Бурка — официальный сайт спектакля</title>
+</head>
+<body>
+  <a href="https://sivka-burka-show.github.io/">Открыть сайт спектакля «Сивка-Бурка»</a>
+</body>
+</html>
