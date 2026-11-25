@@ -15,6 +15,12 @@
 <meta name="twitter:card" content="summary_large_image">
 <style>img{max-width:100%}html:not(.promo-active) :is(.egg-call-hint,.egg-find,.egg-ball,.egg-feature){display:none}
 .egg-card{max-height:90vh;overflow:auto}.promo-shows{display:grid;gap:8px}.promo-shows a{white-space:normal}
+#priglasit > p, .group-booking {max-width: 46rem}
+.invite-links {display: flex; align-items: center; flex-wrap: wrap; gap: .7rem 1.25rem}
+.group-booking {margin-top: 1.5rem; border-top: 1px solid currentColor; padding-top: 1rem; scroll-margin-top: 1rem}
+.group-booking h3 {font-family: var(--f-body); font-size: 1.4rem; margin: 0}
+.group-booking p {margin: .65rem 0}
+.booking-phone {font-size: 1.25rem; white-space: nowrap}
 </style>
 <title>{{ d.hero.browserTitle | default: 'Сивка-Бурка — семейный музыкальный спектакль | Афиша и билеты' | escape }}</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -466,7 +472,7 @@ main.wrap h2, .date .d, .no-shows strong, .pr-name, .write-review strong, .egg-m
     </a>
     <span class="head-lead">{% if d.hero.leader and d.hero.leader != empty %}{{ d.hero.leader | escape | newline_to_br }}{% else %}Художественный руководитель<br>народная артистка России<br>Людмила Николаева{% endif %}</span>
     <nav aria-label="Разделы">
-      <a href="#about">О спектакле</a><a href="#afisha">Афиша</a><a href="#cast">Создатели</a><a href="#video">Видео</a><a href="#photo">Фото</a><a href="#reviews">Отзывы</a><a href="#contacts">Контакты</a>
+      <a href="#about">О спектакле</a><a href="#afisha">Афиша</a><a href="#cast">Создатели</a><a href="#video">Видео</a><a href="#photo">Фото</a><a href="#reviews">Отзывы</a><a href="#priglasit">Организаторам</a><a href="#contacts">Контакты</a>
     </nav>
     <button class="music-btn" type="button" aria-pressed="false" aria-label="Включить музыку"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M9 3v10.6A3.5 3.5 0 1 0 11 17V8h7V3H9z"/></svg><span class="m-off" aria-hidden="true"></span></button>
   </div>
@@ -513,6 +519,7 @@ main.wrap h2, .date .d, .no-shows strong, .pr-name, .write-review strong, .egg-m
       <a class="btn btn-red" href="https://vk.ru/ludmilanikolaeva_official" target="_blank" rel="noopener">Следить ВКонтакте</a>
     </div>
     <p class="legend">Выберите дату и время и нажмите «Билеты», чтобы купить онлайн.</p>
+    <p class="legend"><a href="#group-tickets">Узнать о групповых билетах</a></p>
   </section>
 
   <section id="about">
@@ -575,6 +582,8 @@ main.wrap h2, .date .d, .no-shows strong, .pr-name, .write-review strong, .egg-m
     </div>
   </section>
 
+  {% include invite-show.html %}
+
   <section id="contacts">
     <div class="sec-head"><h2>Контакты</h2><button class="egg-ball" type="button" aria-label="Белый шар: нажмите, вдруг в нём золотое яйцо"><svg viewBox="0 0 64 64" aria-hidden="true"><defs><radialGradient id="bgr4" cx="35%" cy="32%" r="70%"><stop offset="0" stop-color="#fff"/><stop offset=".65" stop-color="#f3f0ea"/><stop offset="1" stop-color="#d3cdc1"/></radialGradient></defs><circle cx="32" cy="32" r="29" fill="url(#bgr4)"/><g fill="none" stroke="#b9b1a3" stroke-width="1.2" opacity=".7"><ellipse cx="32" cy="32" rx="10" ry="29"/><ellipse cx="32" cy="32" rx="21" ry="29"/></g><path d="M29 61 q3 3 6 0" stroke="#b9b1a3" stroke-width="1.5" fill="none"/></svg></button></div>
     <div class="contacts">
@@ -609,6 +618,9 @@ main.wrap h2, .date .d, .no-shows strong, .pr-name, .write-review strong, .egg-m
     if(style.align === 'center') el.querySelector('.sec-head').style.justifyContent='center';
     if(style.spacing === 'wide') el.style.paddingBlock='48px';
   }
+  const contacts = document.getElementById('contacts');
+  contacts.before(document.getElementById('priglasit'));
+  nav.querySelector('[href="#contacts"]').before(nav.querySelector('[href="#priglasit"]'));
 })();
 </script>
 <audio class="music" src="img/music.mp3" loop preload="none"></audio>
@@ -639,6 +651,7 @@ main.wrap h2, .date .d, .no-shows strong, .pr-name, .write-review strong, .egg-m
 
 <footer>
   <div class="wrap">
+    <a href="https://sivka-burka-show.github.io/">Сайт спектакля · sivka-burka-show.github.io</a>
     <span class="end">{{ d.hero.closing | default: 'Тут и сказке конец' | escape }}</span>
     <span>{{ d.hero.organizer | default: 'Организатор ГБУК г. Москвы «МКЦ НТ «Русская душа» п/р Л. Николаевой» · ОГРН 1047796946515' | escape }}</span>
   </div>
