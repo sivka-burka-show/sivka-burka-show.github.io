@@ -502,7 +502,7 @@ main.wrap h2, .date .d, .no-shows strong, .pr-name, .write-review strong, .egg-m
     {% for item in shows %}{% unless item.offSale %}
 <div class="show" data-city="{{ item.city | escape }}" data-venue="{{ item.venue | escape }}" data-start="{{ item.day | date: '%Y-%m-%d' }}T{{ item.time | escape }}:00+03:00">
   <div class="date" aria-label="{{ item.day | date: '%d.%m.%Y' }}"><span class="d">{{ item.day | date: '%d' }}</span><span class="m" data-date-label>{% assign months = 'января февраля марта апреля мая июня июля августа сентября октября ноября декабря' | split: ' ' %}{% assign month_index = item.day | date: '%m' | minus: 1 %}{{ months[month_index] }} {{ item.day | date: '%Y' }}</span></div>
-  <div class="show-info"><strong>{{ item.time | escape }} · {% if item.city == "Пушкино" and item.day == "2026-12-13" and item.time == "12:00" and item.venue == "Дом культуры Пушкино" %}<a href="/pushkino/">{{ item.venue | escape }}</a>{% else %}{{ item.venue | escape }}{% endif %}</strong><span>{% assign location_text = item.venue | append: ' ' | append: item.address | downcase %}{% assign city_name = item.city | downcase %}{% unless location_text contains city_name %}{{ item.city | escape }}{% if item.address != blank %}, {% endif %}{% endunless %}{{ item.address | escape }}</span></div>
+  <div class="show-info"><strong>{{ item.time | escape }} · {% assign card = site.data.city_pages[item.city] %}{% if card and item.day == card.day and item.venue == card.venue %}{% if card.time == nil or card.time == item.time %}<a href="{{ card.path }}">{{ item.venue | escape }}</a>{% else %}{{ item.venue | escape }}{% endif %}{% else %}{{ item.venue | escape }}{% endif %}</strong><span>{% assign location_text = item.venue | append: ' ' | append: item.address | downcase %}{% assign city_name = item.city | downcase %}{% unless location_text contains city_name %}{{ item.city | escape }}{% if item.address != blank %}, {% endif %}{% endunless %}{{ item.address | escape }}</span></div>
   <a class="btn btn-red" href="{{ item.ticket | escape }}" target="_blank" rel="noopener">Билеты</a>
 </div>
 {% endunless %}{% endfor %}
@@ -740,6 +740,7 @@ main.wrap h2, .date .d, .no-shows strong, .pr-name, .write-review strong, .egg-m
     if (!response.ok) return;
     const {items} = await response.json();
     if (!Array.isArray(items)) return;
+    const cityPages = {{ site.data.city_pages | jsonify }};
     const cards = items.map(item => {
       const start = item.day + 'T' + item.time + ':00+03:00';
       if (!Number.isFinite(Date.parse(start)) || !/^https?:\/\//i.test(item.ticket)) throw Error('Invalid show');
@@ -757,9 +758,10 @@ main.wrap h2, .date .d, .no-shows strong, .pr-name, .write-review strong, .egg-m
       const includesCity = (item.venue + ' ' + address).toLowerCase().includes(city.toLowerCase());
       row.querySelector('.show-info span').textContent = includesCity ? address : [city, address].filter(Boolean).join(', ');
       row.querySelector('a.btn-red').href = item.ticket;
-      if (city === 'Пушкино' && item.day === '2026-12-13' && item.time === '12:00' && item.venue === 'Дом культуры Пушкино') {
+      const card = cityPages[city];
+      if (card && item.day === card.day && item.venue === card.venue && (!card.time || card.time === item.time)) {
         const venueLink = document.createElement('a');
-        venueLink.href = '/pushkino/';
+        venueLink.href = card.path;
         venueLink.textContent = item.venue;
         row.querySelector('strong').replaceChildren(item.time + ' · ', venueLink);
       }
