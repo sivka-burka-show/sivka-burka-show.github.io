@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="ru">
 <head>
+{% if page.url contains 'preview' %}<meta name="robots" content="noindex,follow">{% else %}<link rel="canonical" href="https://sivka-burka-show.github.io/">{% endif %}
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="description" content="{{ d.hero.description | default: 'Театрализованное музыкальное представление «Сивка-бурка» по мотивам русской народной сказки. Московский государственный ансамбль «Русская душа» п/р народной артистки России Людмилы Николаевой. Спектакль для всей семьи, 0+.' | escape }}">
@@ -14,7 +15,7 @@
 <style>img{max-width:100%}html:not(.promo-active) :is(.egg-call-hint,.egg-find,.egg-ball,.egg-feature){display:none}
 .egg-card{max-height:90vh;overflow:auto}.promo-shows{display:grid;gap:8px}.promo-shows a{white-space:normal}
 </style>
-<title>{{ d.hero.browserTitle | default: 'Сивка-бурка' | escape }}</title>
+<title>{{ d.hero.browserTitle | default: 'Сивка-Бурка — семейный музыкальный спектакль ансамбля «Русская душа» | Афиша и билеты' | escape }}</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ruslan+Display&family=Yeseva+One&family=PT+Serif:ital,wght@0,400;0,700;1,400&family=PT+Sans+Narrow:wght@400;700&display=swap">
@@ -497,7 +498,7 @@ main.wrap h2, .date .d, .no-shows strong, .pr-name, .write-review strong, .egg-m
     </div>
     <div class="shows">{% for item in d.shows.items %}{% unless item.offSale %}
 <div class="show" data-city="{{ item.city | escape }}" data-venue="{{ item.venue | escape }}" data-start="{{ item.day | date: '%Y-%m-%d' }}T{{ item.time | escape }}:00+03:00">
-  <div class="date"><span class="d">{{ item.day | date: '%d' }}</span><span class="m" data-date-label></span></div>
+  <div class="date" aria-label="{{ item.day | date: '%d.%m.%Y' }}"><span class="d">{{ item.day | date: '%d' }}</span><span class="m" data-date-label>{% assign months = 'января февраля марта апреля мая июня июля августа сентября октября ноября декабря' | split: ' ' %}{% assign month_index = item.day | date: '%m' | minus: 1 %}{{ months[month_index] }} {{ item.day | date: '%Y' }}</span></div>
   <div class="show-info"><strong>{{ item.time | escape }} · {{ item.venue | escape }}</strong><span>{{ item.address | escape }}</span></div>
   <a class="btn btn-red" href="{{ item.ticket | escape }}" target="_blank" rel="noopener">Билеты</a>
 </div>
@@ -651,6 +652,14 @@ main.wrap h2, .date .d, .no-shows strong, .pr-name, .write-review strong, .egg-m
     var month = fmt({day:'numeric', month:'long'}).formatToParts(day).find(function (p) { return p.type === 'month'; });
     row.querySelector('[data-date-label]').textContent = month.value + ', ' + fmt({weekday:'short'}).format(day);
   });
+  var selectedCity = new URLSearchParams(location.search).get('city');
+  if (selectedCity && rows.some(function (row) { return row.dataset.city === selectedCity; })) {
+    var heading = document.querySelector('#afisha h2');
+    heading.textContent = 'Афиша · ' + selectedCity;
+    rows.filter(function (row) { return row.dataset.city !== selectedCity; })
+      .forEach(function (row) { row.hidden = true; });
+    rows = rows.filter(function (row) { return row.dataset.city === selectedCity; });
+  }
   var upcoming = rows.filter(function (r) {
     var past = new Date(r.getAttribute('data-start')).getTime() + 30 * 60000 < now;
     r.hidden = past;
