@@ -503,7 +503,7 @@ main.wrap h2, .date .d, .no-shows strong, .pr-name, .write-review strong, .egg-m
 <div class="show" data-city="{{ item.city | escape }}" data-venue="{{ item.venue | escape }}" data-start="{{ item.day | date: '%Y-%m-%d' }}T{{ item.time | escape }}:00+03:00">
   <div class="date" aria-label="{{ item.day | date: '%d.%m.%Y' }}"><span class="d">{{ item.day | date: '%d' }}</span><span class="m" data-date-label>{% assign months = 'января февраля марта апреля мая июня июля августа сентября октября ноября декабря' | split: ' ' %}{% assign month_index = item.day | date: '%m' | minus: 1 %}{{ months[month_index] }} {{ item.day | date: '%Y' }}</span></div>
   <div class="show-info"><strong>{{ item.time | escape }} · {% assign card = site.data.city_pages[item.city] %}{% if card and item.day == card.day and item.venue == card.venue %}{% if card.time == nil or card.time == item.time %}<a href="{{ card.path }}">{{ item.venue | escape }}</a>{% else %}{{ item.venue | escape }}{% endif %}{% else %}{{ item.venue | escape }}{% endif %}</strong><span>{% assign location_text = item.venue | append: ' ' | append: item.address | downcase %}{% assign city_name = item.city | downcase %}{% unless location_text contains city_name %}{{ item.city | escape }}{% if item.address != blank %}, {% endif %}{% endunless %}{{ item.address | escape }}</span></div>
-  <a class="btn btn-red" href="{{ item.ticket | escape }}" target="_blank" rel="noopener">Билеты</a>
+  <a class="btn btn-red" href="{{ site.data.ticket_links[item.ticket] | default: item.ticket | escape }}" target="_blank" rel="noopener">Билеты</a>
 </div>
 {% endunless %}{% endfor %}
     </div>
@@ -740,6 +740,7 @@ main.wrap h2, .date .d, .no-shows strong, .pr-name, .write-review strong, .egg-m
     if (!response.ok) return;
     const {items} = await response.json();
     if (!Array.isArray(items)) return;
+    const ticketLinks = {{ site.data.ticket_links | jsonify }};
     const cityPages = {{ site.data.city_pages | jsonify }};
     const cards = items.map(item => {
       const start = item.day + 'T' + item.time + ':00+03:00';
@@ -757,7 +758,7 @@ main.wrap h2, .date .d, .no-shows strong, .pr-name, .write-review strong, .egg-m
       const city = item.city || '';
       const includesCity = (item.venue + ' ' + address).toLowerCase().includes(city.toLowerCase());
       row.querySelector('.show-info span').textContent = includesCity ? address : [city, address].filter(Boolean).join(', ');
-      row.querySelector('a.btn-red').href = item.ticket;
+      row.querySelector('a.btn-red').href = ticketLinks[item.ticket] || item.ticket;
       const card = cityPages[city];
       if (card && item.day === card.day && item.venue === card.venue && (!card.time || card.time === item.time)) {
         const venueLink = document.createElement('a');
@@ -993,11 +994,12 @@ main.wrap h2, .date .d, .no-shows strong, .pr-name, .write-review strong, .egg-m
     if(!response.ok)return;promo=await response.json();}catch{return}
   if(!promo?.items?.length)return;
   await window.publishedShowsReady;
+  const ticketLinks = {{ site.data.ticket_links | jsonify }};
   const eligible = Array.from(document.querySelectorAll('.shows .show')).filter(row => {
     const start = row.dataset.start;
     const ticket = row.querySelector('a.btn-red[href]')?.getAttribute('href');
     return Date.parse(start)>Date.now() && promo.items.some(item =>
-      start.startsWith(item.day+'T'+item.time+':') && item.ticket===ticket && item.venue===row.dataset.venue);
+      start.startsWith(item.day+'T'+item.time+':') && (ticketLinks[item.ticket] || item.ticket)===ticket && item.venue===row.dataset.venue);
   }).sort((a,b)=>a.dataset.start.localeCompare(b.dataset.start));
   if(!eligible.length || !promo.code || !promo.percent)return;
   const prize=document.querySelector('.egg-modal');

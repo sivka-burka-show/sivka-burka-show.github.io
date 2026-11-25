@@ -16,6 +16,6 @@ main{gap:clamp(12px,2vh,22px)}.cast{max-height:50svh}.booking{display:grid;justi
 <h1><img src="/pushkino/title.webp" alt="Сивка-Бурка"></h1>
 <img class="cast" src="/pushkino/cast.webp" alt="Артисты спектакля «Сивка-Бурка»">
 <div class="booking">{% if available != empty %}
-<div class="tickets">{% for show in available %}<a href="{{ show.ticket | escape }}">{% if available.size > 1 %}Билеты на {{ show.time }}{% else %}Купить билет{% endif %}</a>{% endfor %}</div>
+<div class="tickets">{% for show in available %}<a href="{{ site.data.ticket_links[show.ticket] | default: show.ticket | escape }}">{% if available.size > 1 %}Билеты на {{ show.time }}{% else %}Купить билет{% endif %}</a>{% endfor %}</div>
 <p class="show"><time datetime="{{ page.day }}">{{ page.date_label }} · {{ times }}</time><strong>{{ page.display_venue | escape }}</strong><span>{% if available.first.address == page.source_address %}{{ page.display_address | escape }}{% else %}{{ available.first.address | escape }}{% endif %}</span></p>
 {% else %}<a href="/#afisha">Посмотреть актуальную афишу</a>{% endif %}</div></main></body></html>
