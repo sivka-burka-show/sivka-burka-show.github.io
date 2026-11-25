@@ -1,0 +1,51 @@
+name: Обновить текст афиши из панели
+on:
+  schedule:
+    - cron: '7,22,37,52 * * * *'
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/sync-shows.yml'
+      - '_scripts/published_schedule.py'
+
+permissions:
+  contents: write
+  pages: write
+
+concurrency:
+  group: sync-public-shows
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Прочитать только опубликованную афишу
+        run: |
+          curl --fail --silent --show-error --retry 2 --max-time 30 \
+            https://sivka-burka-panel-ovrd1979.msk1.amvera.tech/public/shows -o "$RUNNER_TEMP/shows.json"
+          python3 _scripts/published_schedule.py < "$RUNNER_TEMP/shows.json" > "$RUNNER_TEMP/snapshot.json"
+          cp "$RUNNER_TEMP/snapshot.json" _data/published_schedule.json
+      - name: Сохранить обновлённые сеансы
+        run: |
+          git add _data/published_schedule.json
+          if ! git diff --cached --quiet; then
+            git -c user.name='Редактор афиши' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -m 'Обновить опубликованные сеансы для поиска'
+            git push origin HEAD:main
+          fi
+      - name: Обновить страницу, если новая версия ещё не вышла
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          version=$(jq -r .version _data/published_schedule.json)
+          curl --fail --silent --show-error --retry 2 --max-time 30 \
+            https://sivka-burka-show.github.io/ -o "$RUNNER_TEMP/home.html"
+          if ! grep -Fq "name=\"afisha-version\" content=\"$version\"" "$RUNNER_TEMP/home.html"; then
+            gh api --method POST "repos/$GITHUB_REPOSITORY/pages/builds"
+          fi

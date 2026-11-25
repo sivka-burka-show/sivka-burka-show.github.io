@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="ru">
 <head>
+{% if published_schedule %}<meta name="afisha-version" content="{{ published_schedule.version | escape }}">{% endif %}
 {% if page.url contains 'preview' %}<meta name="robots" content="noindex,follow">{% else %}<link rel="canonical" href="https://sivka-burka-show.github.io/">{% endif %}
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -496,10 +497,11 @@ main.wrap h2, .date .d, .no-shows strong, .pr-name, .write-review strong, .egg-m
       <div class="filter"><span class="f-label">Год</span><div class="chips" data-chips="year"></div></div>
       <div class="filter"><span class="f-label">Месяц</span><div class="chips chips-months" data-chips="month"></div></div>
     </div>
-    <div class="shows">{% for item in d.shows.items %}{% unless item.offSale %}
+    <div class="shows">{% assign shows = d.shows.items %}{% if published_schedule %}{% assign shows = published_schedule.items %}{% endif %}
+    {% for item in shows %}{% unless item.offSale %}
 <div class="show" data-city="{{ item.city | escape }}" data-venue="{{ item.venue | escape }}" data-start="{{ item.day | date: '%Y-%m-%d' }}T{{ item.time | escape }}:00+03:00">
   <div class="date" aria-label="{{ item.day | date: '%d.%m.%Y' }}"><span class="d">{{ item.day | date: '%d' }}</span><span class="m" data-date-label>{% assign months = 'января февраля марта апреля мая июня июля августа сентября октября ноября декабря' | split: ' ' %}{% assign month_index = item.day | date: '%m' | minus: 1 %}{{ months[month_index] }} {{ item.day | date: '%Y' }}</span></div>
-  <div class="show-info"><strong>{{ item.time | escape }} · {{ item.venue | escape }}</strong><span>{{ item.address | escape }}</span></div>
+  <div class="show-info"><strong>{{ item.time | escape }} · {{ item.venue | escape }}</strong><span>{% assign location_text = item.venue | append: ' ' | append: item.address | downcase %}{% assign city_name = item.city | downcase %}{% unless location_text contains city_name %}{{ item.city | escape }}{% if item.address != blank %}, {% endif %}{% endunless %}{{ item.address | escape }}</span></div>
   <a class="btn btn-red" href="{{ item.ticket | escape }}" target="_blank" rel="noopener">Билеты</a>
 </div>
 {% endunless %}{% endfor %}
@@ -749,7 +751,10 @@ main.wrap h2, .date .d, .no-shows strong, .pr-name, .write-review strong, .egg-m
         '<div class="show-info"><strong></strong><span></span></div><a class="btn btn-red" target="_blank" rel="noopener">Билеты</a>';
       row.querySelector('.d').textContent = item.day.slice(-2);
       row.querySelector('strong').textContent = item.time + ' · ' + item.venue;
-      row.querySelector('.show-info span').textContent = item.address || '';
+      const address = item.address || '';
+      const city = item.city || '';
+      const includesCity = (item.venue + ' ' + address).toLowerCase().includes(city.toLowerCase());
+      row.querySelector('.show-info span').textContent = includesCity ? address : [city, address].filter(Boolean).join(', ');
       row.querySelector('a').href = item.ticket;
       return row;
     });
