@@ -1,0 +1,14 @@
+---
+layout: null
+---
+{% assign performance = false %}
+{% for show in site.data.published_schedule.items %}{% if show.city == "Пушкино" and show.day == "2026-12-13" and show.time == "12:00" and show.venue == "Дом культуры Пушкино" %}{% unless show.offSale %}{% assign performance = show %}{% endunless %}{% endif %}{% endfor %}
+<!doctype html>
+<html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">{% unless performance %}<meta name="robots" content="noindex,follow">{% endunless %}
+<link rel="canonical" href="https://sivka-burka-show.github.io/pushkino/">
+<meta name="description" content="Семейный спектакль «Сивка-Бурка» в Пушкино. 13 декабря 2026 в 12:00, Дом культуры Пушкино, ул. Некрасова, д. 3. Афиша и билеты."><title>Сивка-Бурка в Пушкино — 13 декабря 2026, 12:00 · Афиша и билеты</title><style>
+*{box-sizing:border-box}body{margin:0;background:#fbf3e5 url("background.webp") center center/cover;min-height:100svh;display:grid;place-items:center}
+main{width:min(100%,760px);min-height:100svh;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:clamp(20px,5vw,44px) 16px;gap:clamp(14px,3vh,28px)}
+h1{margin:0;width:min(90%,535px)}h1 img{width:100%;display:block}.cast{display:block;width:min(100%,650px);max-height:61svh;object-fit:contain}
+a{font:700 19px/1.25 system-ui,sans-serif;background:#842446;color:white;text-decoration:none;padding:15px 38px;border-radius:9px}a:focus-visible{outline:3px solid #163d60;outline-offset:4px}
+main{gap:clamp(12px,2vh,22px)}.cast{max-height:50svh}.booking{display:grid;justify-items:center;gap:14px;width:100%}.show{margin:0;text-align:center;color:#233b5e;font:500 16px/1.45 system-ui,sans-serif;background:#fff8edeb;padding:10px 20px;border-radius:12px}.show time,.show strong{display:block;font:700 clamp(18px,3.8vw,23px)/1.35 Georgia,serif}.show time{color:#762341;margin-bottom:3px}.show span{display:block;margin-top:3px}</style></head><body><main><h1><img src="title.webp" alt="Сивка-Бурка"></h1><img class="cast" src="cast.webp" alt="Артисты спектакля «Сивка-Бурка»"><div class="booking">{% if performance %}<a href="{{ performance.ticket | escape }}">Купить билет</a><p class="show"><time datetime="2026-12-13T12:00:00+03:00">13 декабря 2026 · 12:00</time><strong>Дом культуры Пушкино</strong><span>г. Пушкино, {{ performance.address | replace: "ул. Некрасова д.3", "ул. Некрасова, д. 3" | escape }}</span></p>{% else %}<a href="/#afisha">Посмотреть актуальную афишу</a>{% endif %}</div></main></body></html>
