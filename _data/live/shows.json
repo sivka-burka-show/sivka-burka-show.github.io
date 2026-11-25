@@ -10,6 +10,33 @@
       "offSale": false
     },
     {
+      "day": "2026-12-13",
+      "time": "12:00",
+      "city": "Пушкино",
+      "venue": "Дом культуры Пушкино",
+      "address": "ул. Некрасова д.3",
+      "ticket": "https://iframeab-pre7143.intickets.ru/seance/77872097/",
+      "offSale": false
+    },
+    {
+      "day": "2026-12-27",
+      "time": "12:00",
+      "city": "Дедовск",
+      "venue": "Дедовский ДК",
+      "address": "г.Дедовск, ул.Гагарина, д.7",
+      "ticket": "https://www.afisha.ru/w/session/138044726/3a97175b-c553-431f-9569-31a1da1c4de5/https",
+      "offSale": false
+    },
+    {
+      "day": "2026-12-27",
+      "time": "15:00",
+      "city": "Дедовск",
+      "venue": "Дедовский ДК",
+      "address": "г.Дедовск, ул.Гагарина, д.7",
+      "ticket": "https://www.afisha.ru/w/session/138044728/3a97175b-c553-431f-9569-31a1da1c4de5/https",
+      "offSale": false
+    },
+    {
       "day": "2026-12-29",
       "time": "12:00",
       "city": "Москва",
@@ -69,7 +96,16 @@
       "city": "Талдом",
       "venue": "РДК, г. Талдом",
       "address": "Московская область, г. Талдом, ул. Победы, д. 10",
-      "ticket": "https://iframeab-pre12305.intickets.ru/event/73604188",
+      "ticket": "https://iframeab-pre12305.intickets.ru/seance/77960299",
+      "offSale": false
+    },
+    {
+      "day": "2027-01-04",
+      "time": "12:00",
+      "city": "Пересвет",
+      "venue": "Дом культуры «Космос»",
+      "address": "г. Пересвет, ул. Пионерская, д. 1",
+      "ticket": "https://quicktickets.ru/peresvet-dk-kosmos/s85",
       "offSale": false
     }
   ]
